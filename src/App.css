@@ -1,0 +1,23 @@
+.App {
+    color: white;
+}
+
+.country-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .country-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .country-card img {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
