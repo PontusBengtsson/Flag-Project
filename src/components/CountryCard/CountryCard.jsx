@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Card, CardContent, Typography, CardMedia } from '@mui/material';
 
+// CountryCard.js
 const CountryCard = ({ country }) => {
   const [flagUrl, setFlagUrl] = useState('');
 
@@ -19,11 +21,26 @@ const CountryCard = ({ country }) => {
   }, [country.name.common]);
 
   return (
-    <div className="country-card">
-      <h2>{country.name.common}</h2>
-      {flagUrl ? <img src={flagUrl} alt={`${country.name.common} flag`} /> : <p>Loading flag...</p>}
-    </div>
+    <Card sx={{ 
+      textAlign: 'center',
+      backgroundColor: 'background.default',
+    }}>
+      <CardContent>
+        {flagUrl ? (
+          <CardMedia
+            component="img"
+            height="140"
+            image={flagUrl}
+            alt={`${country.name.common} flag`}
+          />
+        ) : (
+          <Typography>Loading flag...</Typography>
+        )}
+        <Typography variant="h6" sx={{ mt: 2 }}>{country.name.common}</Typography>
+      </CardContent>
+    </Card>
   );
 };
+
 
 export default CountryCard;

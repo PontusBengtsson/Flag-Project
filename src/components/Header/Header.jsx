@@ -10,8 +10,8 @@ const Header = () => {
             flexDirection: 'row',
             alignItems: 'center',
             width: '100%',
-            height: '100px',
-            backgroundColor: 'primary.main',
+            padding: '25px',
+            backgroundColor: 'background.default',
             fontSize: '20px',
             fontWeight: '800',
             borderBottom: '2px solid black'
@@ -24,5 +24,6 @@ const Header = () => {
 }
  
 export default Header;
+
 
 

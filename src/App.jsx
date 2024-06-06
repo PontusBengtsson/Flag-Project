@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from '@mui/material';
-import CountryCard from './components/CountryCard/CountryCard';
+import { Box, Container, Typography } from '@mui/material';
+import CountryGrid from './components/CountryCard/CountryGrid';
 import Header from './components/Header/Header';
 import SearchBar from './components/SearchBar/SearchBar';
 import Test from './components/Test/Test';
 
-function App() {
+export default function App() {
   const [countries, setCountries] = useState([]);
+  const [age, setAge] = useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   useEffect(() => {
-    fetch('https://restcountries.com/v3.1/all')
-      .then(response => response.json())
-      .then(data => setCountries(data))
-      .catch(error => console.log(error));
-  }, []);
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://restcountries.com/v3.1/all');
+        const data = await response.json();
+        setCountries(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-  const gridItems = [
-    { xs: 6, md: 3, content: 'Flagga' },
-    { xs: 6, md: 3, content: 'Flagga' },
-    { xs: 6, md: 3, content: 'Flagga' },
-    { xs: 6, md: 3, content: 'Flagga' },
-  ];
+    fetchCountries();
+  }, []);
 
   return (
     <Box className="App" sx={{
@@ -32,21 +37,21 @@ function App() {
       width: '100%',
     }}>
       <Header />
-      <SearchBar />
-      <Test items={gridItems} />
-      {/* <Box className="country-list" sx={{
+      <SearchBar age={age} handleChange={handleChange} />
+      <Box className="country-list" sx={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
         width: '100%',
       }}>
-        {countries.map(country => (
-          <CountryCard key={country.cca3} country={country} />
-        ))}
-      </Box> */}
+        <Container>
+          <Typography variant="h4" gutterBottom>
+            {/* Any additional text you want to add */}
+          </Typography>
+          <CountryGrid countries={countries} />
+        </Container>
+      </Box>
     </Box>
   );
 }
-
-export default App;
