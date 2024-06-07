@@ -1,6 +1,5 @@
-// SearchBar.js
 import React from 'react';
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 const SearchBar = ({ age, handleChange }) => {
   return (
@@ -12,15 +11,25 @@ const SearchBar = ({ age, handleChange }) => {
         alignItems: 'center',
         width: '100%',
         height: '100px',
-        backgroundColor: 'background.default',
+        backgroundColor: 'background.paper',
         fontSize: '20px',
         fontWeight: '800',
-        borderBottom: '2px solid black',
         margin: '30px',
+        
       }}
     >
-      <Box>Search</Box>
-      <FormControl>
+       <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { width: '25ch' }, backgroundColor: 'background.default'
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField id="outlined-basic" label="Search" variant="outlined" />
+        
+      </Box>
+      <FormControl sx={{ minWidth: 250, backgroundColor: 'background.default' }}>
         <InputLabel id="demo-simple-select-label">Region</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -37,6 +46,7 @@ const SearchBar = ({ age, handleChange }) => {
           <MenuItem value={60}>Oceania</MenuItem>
         </Select>
       </FormControl>
+     
     </Box>
   );
 };
