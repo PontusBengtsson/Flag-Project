@@ -55,7 +55,7 @@ const CountryCard = ({ country }) => {
     <Card sx={{ 
       textAlign: 'center',
       backgroundColor: 'background.default',
-      width: '100%', 
+      width: '100vh', 
     }}>
       <CardContent sx={{ padding: 0 }}>
         {flagUrl && (
@@ -64,7 +64,7 @@ const CountryCard = ({ country }) => {
             height="140"
             image={flagUrl}
             alt={`${country.name.common} flag`}
-            sx={{ width: '100%', objectFit: 'cover' }}
+            sx={{  objectFit: 'cover' }}
           />
         )}
         <Box sx={{ padding: 0 }}>

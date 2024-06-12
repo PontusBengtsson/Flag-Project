@@ -12,7 +12,7 @@ const Header = () => {
 				flexDirection: 'row',
 				alignItems: 'center',
 				width: '100%',
-				padding: '25px',
+				padding: '20px 0px 20px 0px',
 				backgroundColor: 'background.default',
 				fontSize: '20px',
 				fontWeight: '800',

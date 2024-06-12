@@ -28,7 +28,7 @@ export default function App() {
       alignItems: 'center',
       height: '100vh',
       width: '100%',
-      gap: '40px'
+      gap: '35px'
     }}>
       <Header />
       <SearchBar />
