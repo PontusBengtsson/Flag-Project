@@ -8,10 +8,11 @@ const SearchBar = ({ age, handleChange }) => {
    <Box
         component="form"
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: 'green',
           display: 'flex',
-          justifyContent: 'space-around',
-          width: '100%'
+          justifyContent: 'space-between',
+          width: '61%'
+
         }}
         noValidate
         autoComplete="off"

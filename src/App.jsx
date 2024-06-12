@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container } from '@mui/material';
-import CountryGrid from './components/CountryCard/CountryGrid';
+import Country from './components/CountryCard/Country'; // Make sure the path is correct
 import Header from './components/Header/Header';
 import SearchBar from './components/SearchBar/SearchBar';
 
 export default function App() {
   const [countries, setCountries] = useState([]);
-  const [age, setAge] = useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -33,13 +28,12 @@ export default function App() {
       alignItems: 'center',
       height: '100vh',
       width: '100%',
-      gap: '25px'
+      gap: '40px'
     }}>
       <Header />
-      <SearchBar age={age} handleChange={handleChange} />
-      <Container sx={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <CountryGrid countries={countries} />
-      </Container>
+      <SearchBar />
+      <Country countries={countries}/>
+      
     </Box>
   );
 }
