@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Container } from '@mui/material';
-import Country from './components/CountryCard/Country'; // Make sure the path is correct
+import CountryCards from './components/CountryCards/CountryCards';
 import Header from './components/Header/Header';
 import SearchBar from './components/SearchBar/SearchBar';
+import CountryPage from './pages/CountryPage/CountryPage';
+import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
   const [countries, setCountries] = useState([]);
@@ -30,9 +32,10 @@ export default function App() {
       width: '100%',
       gap: '35px'
     }}>
-      <Header />
+      {/* <Header />
       <SearchBar />
-      <Country countries={countries}/>
+      <CountryCards countries={countries}/> */}
+     <CountryPage />
       
     </Box>
   );

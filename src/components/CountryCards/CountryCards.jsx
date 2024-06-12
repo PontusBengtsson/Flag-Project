@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-const Country = ({ countries }) => {
+const CountryCards = ({ countries }) => {
 	return (
 		<Box
 			sx={{
@@ -49,4 +49,4 @@ const Country = ({ countries }) => {
 	);
 };
 
-export default Country;
+export default CountryCards;
