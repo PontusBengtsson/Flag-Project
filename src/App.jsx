@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CountryCards from './components/CountryCards/CountryCards';
 import Header from './components/Header/Header';
 import SearchBar from './components/SearchBar/SearchBar';
 import CountryPage from './pages/CountryPage/CountryPage';
-import { Routes, Route } from 'react-router-dom';
 
 export default function App() {
   const [countries, setCountries] = useState([]);
@@ -16,7 +16,7 @@ export default function App() {
         const data = await response.json();
         setCountries(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -24,19 +24,24 @@ export default function App() {
   }, []);
 
   return (
-    <Box className="App" sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      height: '100vh',
-      width: '100%',
-      gap: '35px'
-    }}>
-      {/* <Header />
-      <SearchBar />
-      <CountryCards countries={countries}/> */}
-     <CountryPage />
-      
-    </Box>
+    <Router>
+      <Box
+        className="App"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          width: '100%',
+          gap: '35px',
+        }}
+      >
+        
+        <Routes>
+          {/* <Route path="/" element={<CountryCards countries={countries} />} /> */}
+          {/* <Route path="/country/:countryCode" element={<CountryPage />} /> */}
+        </Routes>
+        <CountryPage />
+      </Box>
+    </Router>
   );
 }
