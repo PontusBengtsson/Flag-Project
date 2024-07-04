@@ -8,6 +8,9 @@ import CountryPage from '../CountryPage/CountryPage';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [region, setRegion] = useState('');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -15,6 +18,7 @@ const Home = () => {
         const response = await fetch('https://restcountries.com/v3.1/all');
         const data = await response.json();
         setCountries(data);
+        setFilteredCountries(data); // Initialize with all countries
       } catch (error) {
         console.error(error);
       }
@@ -22,6 +26,26 @@ const Home = () => {
 
     fetchCountries();
   }, []);
+
+  useEffect(() => {
+    filterCountries();
+  }, [region, search]);
+
+  const filterCountries = () => {
+    let filtered = countries;
+
+    if (region) {
+      filtered = filtered.filter(country => country.region === region);
+    }
+
+    if (search) {
+      filtered = filtered.filter(country =>
+        country.name.common.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    setFilteredCountries(filtered);
+  };
 
   return (
     <Router>
@@ -36,9 +60,9 @@ const Home = () => {
         }}
       >
         <Header />
-        <SearchBar />
+        <SearchBar setRegion={setRegion} setSearch={setSearch} />
         <Routes>
-          <Route path="/" element={<CountryCards countries={countries} />} />
+          <Route path="/" element={<CountryCards countries={filteredCountries} />} />
           <Route path="/country/:countryCode" element={<CountryPage />} />
         </Routes>
       </Box>

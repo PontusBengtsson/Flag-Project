@@ -1,43 +1,51 @@
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
-const SearchBar = ({ age, handleChange }) => {
-  return (
-  
-   
-   <Box
-        component="form"
-        sx={{
-          backgroundColor: 'green',
-          display: 'flex',
-          justifyContent: 'space-between',
-          width: '61%'
+const SearchBar = ({ setRegion, setSearch }) => {
+  const handleRegionChange = (event) => {
+    setRegion(event.target.value);
+  };
 
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField id="outlined-basic" label="Search" variant="outlined" sx={{backgroundColor: 'background.default'}}/>
-        <FormControl sx={{ minWidth: 250, backgroundColor: 'background.default' }}>
-          <InputLabel id="demo-simple-select-label">Region</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-          >
-            <MenuItem value={10}>Asia</MenuItem>
-            <MenuItem value={20}>Europe</MenuItem>
-            <MenuItem value={30}>North America</MenuItem>
-            <MenuItem value={40}>South America</MenuItem>
-            <MenuItem value={50}>Africa</MenuItem>
-            <MenuItem value={60}>Oceania</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-   
-    
+  const handleSearchChange = (event) => {
+    setSearch(event.target.value);
+  };
+
+  return (
+    <Box
+      component="form"
+      sx={{
+        backgroundColor: 'green',
+        display: 'flex',
+        justifyContent: 'space-between',
+        width: '61%',
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField
+        id="outlined-basic"
+        label="Search"
+        variant="outlined"
+        sx={{ backgroundColor: 'background.default' }}
+        onChange={handleSearchChange}
+      />
+      <FormControl sx={{ minWidth: 250, backgroundColor: 'background.default' }}>
+        <InputLabel id="region-select-label">Region</InputLabel>
+        <Select
+          labelId="region-select-label"
+          id="region-select"
+          onChange={handleRegionChange}
+          label="Region"
+        >
+          <MenuItem value="">All</MenuItem>
+          <MenuItem value="Asia">Asia</MenuItem>
+          <MenuItem value="Europe">Europe</MenuItem>
+          <MenuItem value="Africa">Africa</MenuItem>
+          <MenuItem value="Americas">Americas</MenuItem>
+          <MenuItem value="Oceania">Oceania</MenuItem>
+        </Select>
+      </FormControl>
+    </Box>
   );
 };
 

@@ -20,27 +20,25 @@ const CountryCards = ({ countries }) => {
     >
       {countries.map((country) => (
         <Link 
-		className="country-card"
-		sx={{
-		  flexBasis: 'calc(25% - 40px)', // Four countries per row, compensating for gap
-		  maxWidth: 'calc(25% - 40px)', // Max width to keep four countries per row
-		  backgroundColor: 'white',
-		  padding: '0px 0px 10px 0px',
-		  borderRadius: '8px',
-		  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-		  textAlign: 'center',
-		  display: 'flex',
-		  flexDirection: 'column',
-		  justifyContent: 'space-between',
-		  cursor: 'pointer'
-		}}
+          className="country-card"
+          sx={{
+            flexBasis: 'calc(25% - 40px)', // Four countries per row, compensating for gap
+            maxWidth: 'calc(25% - 40px)', // Max width to keep four countries per row
+            backgroundColor: 'white',
+            padding: '0px 0px 10px 0px',
+            borderRadius: '8px',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+            textAlign: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            cursor: 'pointer'
+          }}
           key={country.cca3}
           to={`/country/${country.cca3}`}
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
-          <Box
-     
-          >
+          <Box>
             <img
               src={country.flags.png}
               alt={`${country.name.common} flag`}
