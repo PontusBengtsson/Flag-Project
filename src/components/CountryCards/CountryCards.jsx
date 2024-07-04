@@ -19,7 +19,7 @@ const CountryCards = ({ countries }) => {
       className="countries-container"
     >
       {countries.map((country) => (
-        <Link
+        <Link 
 		className="country-card"
 		sx={{
 		  flexBasis: 'calc(25% - 40px)', // Four countries per row, compensating for gap
@@ -39,7 +39,7 @@ const CountryCards = ({ countries }) => {
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <Box
-           
+     
           >
             <img
               src={country.flags.png}
