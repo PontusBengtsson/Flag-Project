@@ -10,7 +10,7 @@ const CountryPage = () => {
 
   return (
     <>
-      <Header />
+     
       <Container>
         <Button 
           startIcon={<ArrowBackIcon />} 
