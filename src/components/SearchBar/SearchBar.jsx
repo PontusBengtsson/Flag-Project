@@ -28,7 +28,7 @@ const SearchBar = ({ setRegion, setSearch }) => {
         display: 'flex',
         justifyContent: 'space-between',
         margin: '10px',
-        width: '80%',
+        width: '68%',
         
       }}
       noValidate

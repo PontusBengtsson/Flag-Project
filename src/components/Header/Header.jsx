@@ -12,11 +12,11 @@ const Header = () => {
 				flexDirection: 'row',
 				alignItems: 'center',
 				width: '100%',
-				padding: '20px 0px 20px 0px',
+				padding: '10px 70px 10px 70px',
 				backgroundColor: 'background.default',
 				fontSize: '20px',
 				fontWeight: '800',
-				borderBottom: '2px solid black'
+				boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 			}}
 		>
 			<Box sx={{ fontWeight: theme.typography.fontWeightBold }}>The Flag App</Box>

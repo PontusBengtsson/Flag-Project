@@ -56,7 +56,7 @@ const Home = () => {
           flexDirection: 'column',
           alignItems: 'center',
           width: '100%',
-          gap: '35px',
+          gap: '25px',
         }}
       >
         <Header />
