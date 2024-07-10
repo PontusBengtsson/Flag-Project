@@ -10,21 +10,33 @@ const SearchBar = ({ setRegion, setSearch }) => {
     setSearch(event.target.value);
   };
 
+  // box-sizing: border-box; */
+  //   /* display: flex; */
+  //   flex-flow: wrap;
+  //   /* margin-top: -16px; */
+  //   /* width: calc(100% + 16px); */
+  //   /* margin-left: -16px; */
+  //   /* margin-bottom: 32px; */
+  //   /* -webkit-box-pack: justify; */
+
+
   return (
     <Box
       component="form"
       sx={{
-        backgroundColor: 'green',
+        backgroundColor: 'background.paper',
         display: 'flex',
         justifyContent: 'space-between',
-        width: '61%',
+        margin: '10px',
+        width: '80%',
+        
       }}
       noValidate
       autoComplete="off"
     >
       <TextField
         id="outlined-basic"
-        label="Search"
+        label="Search for a country"
         variant="outlined"
         sx={{ backgroundColor: 'background.default' }}
         onChange={handleSearchChange}
@@ -41,7 +53,7 @@ const SearchBar = ({ setRegion, setSearch }) => {
           <MenuItem value="Asia">Asia</MenuItem>
           <MenuItem value="Europe">Europe</MenuItem>
           <MenuItem value="Africa">Africa</MenuItem>
-          <MenuItem value="Americas">Americas</MenuItem>
+          <MenuItem value="Americas">America</MenuItem>
           <MenuItem value="Oceania">Oceania</MenuItem>
         </Select>
       </FormControl>
