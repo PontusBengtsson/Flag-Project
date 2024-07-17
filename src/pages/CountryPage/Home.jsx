@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CountryCards from '../../components/CountryCards/CountryCards';
 import Header from '../../components/Header/Header';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -11,6 +11,8 @@ const Home = () => {
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [region, setRegion] = useState('');
   const [search, setSearch] = useState('');
+
+  const location = useLocation();
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -48,26 +50,32 @@ const Home = () => {
   };
 
   return (
+    <Box
+      className="App"
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        gap: '25px',
+      }}
+    >
+      <Header />
+      {location.pathname === "/" && <SearchBar setRegion={setRegion} setSearch={setSearch} />}
+      <Routes>
+        <Route path="/" element={<CountryCards countries={filteredCountries} />} />
+        <Route path="/country/:countryCode" element={<CountryPage />} />
+      </Routes>
+    </Box>
+  );
+};
+
+const App = () => {
+  return (
     <Router>
-      <Box
-        className="App"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          width: '100%',
-          gap: '25px',
-        }}
-      >
-        <Header />
-        <SearchBar setRegion={setRegion} setSearch={setSearch} />
-        <Routes>
-          <Route path="/" element={<CountryCards countries={filteredCountries} />} />
-          <Route path="/country/:countryCode" element={<CountryPage />} />
-        </Routes>
-      </Box>
+      <Home />
     </Router>
   );
 };
 
-export default Home;
+export default App;
