@@ -5,6 +5,7 @@ import CountryCards from '../../components/CountryCards/CountryCards';
 import Header from '../../components/Header/Header';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import CountryPage from '../CountryPage/CountryPage';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -60,8 +61,21 @@ const Home = () => {
         gap: '25px',
       }}
     >
+      
       <Header />
-      {location.pathname === "/" && <SearchBar setRegion={setRegion} setSearch={setSearch} />}
+      <Box className="SearchDropdown" sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '70%',
+        gap: '25px',
+
+      }}>
+      {location.pathname === "/" && <SearchBar setSearch={setSearch} />}
+      {location.pathname === "/" && <Dropdown setRegion={setRegion}  />}
+      </Box>
+      
       <Routes>
         <Route path="/" element={<CountryCards countries={filteredCountries} />} />
         <Route path="/country/:countryCode" element={<CountryPage />} />

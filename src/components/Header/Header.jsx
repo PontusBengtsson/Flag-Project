@@ -17,6 +17,7 @@ const Header = () => {
 				fontSize: '20px',
 				fontWeight: '800',
 				boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+				margin: '0px',
 			}}
 		>
 			<Box sx={{ fontWeight: theme.typography.fontWeightBold }}>The Flag App</Box>
