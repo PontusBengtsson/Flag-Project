@@ -25,22 +25,45 @@ const CountryPage = () => {
 		return <Typography>Loading...</Typography>;
 	}
 
+	// Extrahera det första native name och top-level domains
+	const nativeName = country.name.nativeName 
+		? Object.values(country.name.nativeName)[0].common 
+		: 'N/A';
+	const topLevelDomain = country.tld ? country.tld.join(', ') : 'N/A';
+
 	return (
-		<Box sx={{ display: 'flex',
-      gap:'20px',
-      flexDirection:'column'
-    }}>
-			<Button variant="contained" onClick={() => navigate(-1)} sx={{ alignSelf: 'flex-start' }}>
-				Back
-			</Button>
+		<Box 
+			sx={{ 
+				display: 'flex', 
+				flexDirection: 'column', 
+				alignItems: 'center', // Centrerar innehållet horisontellt
+				justifyContent: 'center', // Centrerar innehållet vertikalt
+				
+				gap: 4,
+			}}
+		>
+			<Box sx={{ display: 'flex', width: '100%', justifyContent: 'flex-start' }}>
+				<Button 
+					variant="contained" 
+					onClick={() => navigate(-1)} 
+					sx={{ alignSelf: 'flex-start' }}
+				>
+					Back
+				</Button>
+			</Box>
+
 			<Box
 				sx={{
 					display: 'flex',
 					flexDirection: 'row',
 					alignItems: 'center',
+					justifyContent: 'center',
 					gap: 3,
 					padding: 3,
-					backgroundColor: 'green'
+					backgroundColor: 'green',
+					width: '90%', // Anpassar bredden för bättre responsivitet
+					maxWidth: '600px', // Sätter en maxbredd så att kortet inte blir för stort
+					borderRadius: '8px',
 				}}
 			>
 				<img
@@ -48,21 +71,23 @@ const CountryPage = () => {
 					alt={`${country.name.common} flag`}
 					style={{ width: '50%', height: 'auto', borderRadius: '8px' }}
 				/>
-				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+				<Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', gap: '15px' }}>
 					<Typography variant="h4">{country.name.common}</Typography>
-					<Typography variant="body1">Population: {country.population.toLocaleString()}</Typography>
-					<Typography variant="body1">Region: {country.region}</Typography>
-					<Typography variant="body1">Capital: {country.capital ? country.capital[0] : 'N/A'}</Typography>
-					<Typography variant="body1">Subregion: {country.subregion}</Typography>
-					<Typography variant="body1">Area: {country.area.toLocaleString()} km²</Typography>
-					<Typography variant="body1">Timezones: {country.timezones.join(', ')}</Typography>
-					<Typography variant="body1">
-						Currencies:{' '}
-						{Object.values(country.currencies)
-							.map((c) => c.name)
-							.join(', ')}
-					</Typography>
-					<Typography variant="body1">Languages: {Object.values(country.languages).join(', ')}</Typography>
+					<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+						<Typography variant="body1"><strong>Population:</strong>  {country.population.toLocaleString()}</Typography>
+						<Typography variant="body1"><strong>Region:</strong> {country.region}</Typography>
+						<Typography variant="body1"><strong>Capital:</strong>  {country.capital ? country.capital[0] : 'N/A'}</Typography>
+						<Typography variant="body1"><strong>Native Name:</strong> {nativeName}</Typography>
+						<Typography variant="body1"><strong>Top Level Domain:</strong> {topLevelDomain}</Typography>
+						<Typography variant="body1">
+							<strong>Currencies:</strong> {' '}
+							{Object.values(country.currencies)
+								.map((c) => c.name)
+								.join(', ')}
+						</Typography>
+						<Typography variant="body1"><strong>Languages:</strong>  {Object.values(country.languages).join(', ')}</Typography>
+					</Box>
+					<Typography variant="body1"><strong>Border Countries:</strong> {country.borders ? country.borders.join(', ') : 'This country has no border Border Countries'}</Typography>
 				</Box>
 			</Box>
 		</Box>
