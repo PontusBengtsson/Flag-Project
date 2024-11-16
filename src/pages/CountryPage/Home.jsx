@@ -59,6 +59,7 @@ const Home = () => {
         alignItems: 'center',
         width: '100%',
         gap: '25px',
+        margin: '0px'
       }}
     >
       
@@ -68,7 +69,7 @@ const Home = () => {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '70%',
+        width: '100%',
         gap: '25px',
 
       }}>

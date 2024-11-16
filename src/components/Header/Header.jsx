@@ -8,18 +8,20 @@ const Header = () => {
 		<Box
 			sx={{
 				display: 'flex',
-				justifyContent: 'space-around',
+				justifyContent: 'center',
 				flexDirection: 'row',
-				alignItems: 'center',
+				
 				width: '100%',
 				padding: '10px 70px 10px 70px',
 				backgroundColor: 'background.default',
-				fontSize: '20px',
-				fontWeight: '800',
+				
 				boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-				margin: '0px',
+				
 			}}
 		>
+			<Box sx={{ display: 'flex' ,fontSize: '20px',
+				fontWeight: '800',flexDirection: 'row',
+				alignItems: 'center', justifyContent:'space-between', width: '60%'}}>
 			<Box sx={{ fontWeight: theme.typography.fontWeightBold }}>The Flag App</Box>
 			<img src="/assets/techover-logo-dark.png" style={{ maxHeight: '100%', maxWidth: '100%' }} alt="Techover" />
 			<Button sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
@@ -41,8 +43,10 @@ const Header = () => {
 						/>
 					</g>
 				</svg>
-				<Box>Darkmode</Box>
+				<Box>Light mode</Box>
+				
 			</Button>
+			</Box>
 		</Box>
 	);
 };
