@@ -51,7 +51,7 @@ const CountryPage = () => {
                 sx={{
                     display: 'flex',
                     justifyContent: 'center', // Centrerar horisontellt
-                    width: '50%',
+                    width: '100%',
                     gap: 10,
 					flexDirection: 'column',
 					alignItems: 'center'

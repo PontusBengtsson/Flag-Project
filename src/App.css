@@ -4,12 +4,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    padding: 0px;
   }
   
   .country-card {
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
+    padding: 0px;
     width: 200px;
     text-align: center;
   }

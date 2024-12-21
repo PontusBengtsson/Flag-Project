@@ -10,14 +10,7 @@ const SearchBar = ({ setRegion, setSearch }) => {
     setSearch(event.target.value);
   };
 
-  // box-sizing: border-box; */
-  //   /* display: flex; */
-  //   flex-flow: wrap;
-  //   /* margin-top: -16px; */
-  //   /* width: calc(100% + 16px); */
-  //   /* margin-left: -16px; */
-  //   /* margin-bottom: 32px; */
-  //   /* -webkit-box-pack: justify; */
+ 
 
 
   return (
@@ -26,9 +19,12 @@ const SearchBar = ({ setRegion, setSearch }) => {
       sx={{
         backgroundColor: 'background.paper',
         display: 'flex',
-        justifyContent: 'space-between',
-        margin: '10px',
-        width: '68%',
+        alignItems:'center',
+        justifyContent:'center',
+        
+        
+        
+        
         
       }}
       noValidate

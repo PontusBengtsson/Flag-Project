@@ -17,13 +17,23 @@ body {
     padding: 0;
 }
 
+.countries-container {
+    padding: 0;
+    margin: 0;
+  }
+  .country-card {
+    margin: 0;
+    padding: 0;
+  }
+  
+
 
 .scroll-container {
     width: 300px;           /* Ange bredden på containern */
     height: 150px;          /* Ange höjden på containern */
     overflow-y: scroll;     /* Lägg till en scrollbar endast för vertikalt rullande */
     border: 1px solid #ccc; /* Lägg till en kantlinje för synlighet */
-    padding: 10px;          /* Lite padding för att skapa utrymme inuti containern */
+    padding: 0px;          /* Lite padding för att skapa utrymme inuti containern */
 }
 
 .scroll-container::-webkit-scrollbar {

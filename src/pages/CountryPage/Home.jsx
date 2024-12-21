@@ -59,18 +59,23 @@ const Home = () => {
         alignItems: 'center',
         width: '100%',
         gap: '25px',
-        margin: '0px'
+        margin: '0px',
+        padding: '0px'
       }}
     >
       
       <Header />
+      <Box sx={{width: '60%',}}>
       <Box className="SearchDropdown" sx={{
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
+        
+        justifyContent: 'space-between',
         width: '100%',
-        gap: '25px',
+       
+       
+        
+        margin: '40px, 40px'
 
       }}>
       {location.pathname === "/" && <SearchBar setSearch={setSearch} />}
@@ -81,7 +86,9 @@ const Home = () => {
         <Route path="/" element={<CountryCards countries={filteredCountries} />} />
         <Route path="/country/:countryCode" element={<CountryPage />} />
       </Routes>
+      </Box>
     </Box>
+    
   );
 };
 
