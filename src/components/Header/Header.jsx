@@ -11,7 +11,7 @@ const Header = () => {
 				justifyContent: 'center',
 				flexDirection: 'row',
 				width: '100%',
-				padding: '10px 70px 10px 70px',
+				
 				backgroundColor: 'background.default',
 				boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
 			}}
@@ -24,7 +24,8 @@ const Header = () => {
 					flexDirection: 'row',
 					alignItems: 'center',
 					justifyContent: 'space-between',
-					width: '60%'
+					width: '60%',
+					padding: '15px 0px 15px 0px'
 				}}
 			>
 				<Box sx={{ fontWeight: theme.typography.fontWeightBold }}>The Flag App</Box>
@@ -33,7 +34,7 @@ const Header = () => {
 					style={{ maxHeight: '100%', maxWidth: '100%' }}
 					alt="Techover"
 				/>
-				<Button sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' }}>
+				<Button sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', padding: '0px' }}>
 					<svg xmlns="http://www.w3.org/2000/svg" width="29.548" height="30.563" viewBox="0 0 29.548 30.563">
 						<g
 							id="Subtraction_2"

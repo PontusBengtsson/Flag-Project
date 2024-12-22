@@ -84,7 +84,7 @@ const CountryPage = () => {
                     <img
                         src={country.flags.png}
                         alt={`${country.name.common} flag`}
-                        style={{ width: '50%', height: 'auto', borderRadius: '8px' }}
+                        style={{  height: 'auto', borderRadius: '8px' }}
                     />
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', height: 'auto', gap: '30px' }}>
                         <Typography variant="h4">{country.name.common}</Typography>
