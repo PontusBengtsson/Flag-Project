@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CountryCards from '../../components/CountryCards/CountryCards';
 import Header from '../../components/Header/Header';
 import SecondHeader from '../../components/SecondHeader/SecondHeader';
 import CountryPage from '../CountryPage/CountryPage';
 
-const Home = () => {
+const AppContent = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [region, setRegion] = useState('');
   const [search, setSearch] = useState('');
+
+  const location = useLocation(); // Hämta den aktuella sökvägen
+  const showSecondHeader = location.pathname === '/'; // Kontrollera om vi är på startsidan
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -48,18 +51,24 @@ const Home = () => {
   };
 
   return (
+    <Box>
+      <Header />
+      {showSecondHeader && <SecondHeader setRegion={setRegion} setSearch={setSearch} />}
+      <Routes>
+        <Route
+          path="/"
+          element={<CountryCards countries={filteredCountries} />}
+        />
+        <Route path="/country/:countryCode" element={<CountryPage />} />
+      </Routes>
+    </Box>
+  );
+};
+
+const Home = () => {
+  return (
     <Router>
-      <Box>
-        <Header />
-        <SecondHeader setRegion={setRegion} setSearch={setSearch} />
-        <Routes>
-          <Route
-            path="/"
-            element={<CountryCards countries={filteredCountries} />}
-          />
-          <Route path="/country/:countryCode" element={<CountryPage />} />
-        </Routes>
-      </Box>
+      <AppContent />
     </Router>
   );
 };

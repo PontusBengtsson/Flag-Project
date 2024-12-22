@@ -11,7 +11,8 @@ const SearchBar = ({ setSearch }) => {
 			component="form"
 			sx={{
 				display: 'flex',
-				borderRadius: '8px'
+				borderRadius: '8px',
+				minWidth: 370, 
 			}}
 			noValidate
 			autoComplete="off"

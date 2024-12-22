@@ -52,7 +52,8 @@ const CountryCards = ({ countries }) => {
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
-                    padding: '0px'
+                    padding: '0px',
+                    marginBottom: '25px'
                   }}
                 >
                   <img

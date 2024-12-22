@@ -10,7 +10,7 @@ const Dropdown = ({ setRegion }) => {
 
   return (
     <Box>
-      <FormControl sx={{ minWidth: 250, backgroundColor: theme.palette.background.default }}>
+      <FormControl sx={{ minWidth: 180, backgroundColor: theme.palette.background.default }}>
         <InputLabel id="region-select-label">Region</InputLabel>
         <Select
           labelId="region-select-label"
