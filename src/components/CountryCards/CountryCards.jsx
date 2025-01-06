@@ -16,7 +16,7 @@ const CountryCards = ({ countries }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh',
+       
         padding: '0px', // Space around the content
         boxSizing: 'border-box',
         
@@ -24,7 +24,7 @@ const CountryCards = ({ countries }) => {
     >
       <Box
         sx={{
-          width: '60%', // Constrain content to 60% of the screen width
+          width: '1200px', // Constrain content to 60% of the screen width
           
         }}
       >

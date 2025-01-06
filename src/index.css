@@ -49,3 +49,86 @@ body {
 .scroll-container::-webkit-scrollbar-thumb:hover {
     background-color: #555; /* Ändrar färg när man håller musen över scrollbarren */
 }
+
+
+/* För extra små skärmar (mobiler i stående läge, max 480px) */
+@media (max-width: 480px) {
+    body {
+      font-size: 14px;
+      background-color: lightgrey;
+    }
+
+ 
+
+      
+
+      
+  
+    .country-card {
+      width: 100%; /* Anpassar bredden för mobiler */
+      margin: 10px 0;
+    }
+  
+    .country-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  /* För små skärmar (små surfplattor i stående läge, 481px till 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    body {
+      font-size: 15px;
+      background-color: lightblue;
+    }
+  
+    .scroll-container {
+      width: 100%;
+    }
+  
+    
+    .country-card {
+      width: 200px; /* Anpassar bredden för mindre surfplattor */
+    }
+  
+    .country-list {
+      justify-content: space-between;
+    }
+
+    #Techover-logo {
+        display: none;
+    }
+  }
+  
+  /* För medelstora skärmar (surfplattor och små laptops, 769px till 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    body {
+      font-size: 15px;
+      background-color: lightgreen;
+    }
+  
+    .country-card {
+      width: 30%; /* Anpassar bredden för surfplattor */
+    }
+  
+    .country-list {
+      gap: 15px;
+    }
+  }
+  
+  /* För stora skärmar (vanliga laptops och desktops, 1025px och uppåt) */
+  @media (min-width: 1025px) {
+    body {
+      font-size: 16px;
+      background-color: white;
+    }
+  
+    .country-card {
+      width: 20%; /* Anpassar bredden för desktops */
+    }
+  
+    .country-list {
+      gap: 20px;
+    }
+  }
+  

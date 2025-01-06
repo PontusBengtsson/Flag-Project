@@ -102,7 +102,7 @@ const CountryPage = () => {
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '32px', width: '100%' }}>
-			<Box sx={{ width: '60%', gap: 10, flexDirection: 'column', display: 'flex' }}>
+			<Box sx={{ width: '1200px', gap: 10, flexDirection: 'column', display: 'flex' }}>
 				<Box sx={{ mb: 4 }}>
 					<Button
 						variant="contained"
@@ -143,11 +143,11 @@ const CountryPage = () => {
 						BACK
 					</Button>
 				</Box>
-				<Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: 10, width: '100%', height: '350px' }}>
+				<Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: 10, width: '100%', height: 'auto' }}>
 					<img
 						src={country.flags.png}
 						alt={`${country.name.common} flag`}
-						style={{ width: '50%', height: 'auto', borderRadius: '8px' }}
+						style={{ width: '544px', height: 'auto', borderRadius: '8px' }}
 					/>
 					<CountryDetails country={country} handleBorderClick={handleBorderClick} />
 				</Box>
@@ -156,4 +156,4 @@ const CountryPage = () => {
 	);
 };
 
-export default CountryPage
+export default CountryPage;

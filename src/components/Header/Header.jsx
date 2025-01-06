@@ -21,18 +21,18 @@ const Header = () => {
 					flexDirection: 'row',
 					alignItems: 'center',
 					justifyContent: 'space-between',
-					width: '60%',
-					padding: '15px 0px 15px 0px'
+					width: '1200px',
+					padding: '12px 0px 12px 0px'
 				}}
 			>
 				<Box>The Flag App</Box>
-				<img
+				<img id="Techover-logo"
 					src="/assets/techover-logo-dark.png"
 					style={{ maxHeight: '100%', maxWidth: '100%' }}
 					alt="Techover"
 				/>
 				<Button
-					sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', padding: '0px' }}
+					sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px', padding: '5px' }}
 				>
 					<svg xmlns="http://www.w3.org/2000/svg" width="29.548" height="30.563" viewBox="0 0 29.548 30.563">
 						<g
