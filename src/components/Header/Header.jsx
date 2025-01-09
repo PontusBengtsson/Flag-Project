@@ -21,7 +21,7 @@ const Header = () => {
 					flexDirection: 'row',
 					alignItems: 'center',
 					justifyContent: 'space-between',
-					width: '1200px',
+					width: '1150px',
 					padding: '12px 0px 12px 0px'
 				}}
 			>

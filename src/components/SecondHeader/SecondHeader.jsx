@@ -12,13 +12,11 @@ const SecondHeader = ({ setRegion, setSearch }) => {
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        margin: '50px 0px',
+        margin: '32px 0px',
       }}
     >
-      {/* Optional Title */}
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>
-        
-      </Typography>
+    
+      
 
       <Box
         sx={{
@@ -27,8 +25,9 @@ const SecondHeader = ({ setRegion, setSearch }) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           width: '100%',
-          maxWidth: '1200px', // Max width of layout
-          gap: '16px', // Gap between SearchBar and Dropdown
+          maxWidth: '1150px', // Max width of layout
+          margin: '0px',
+          padding: '0px'
         }}
       >
         <SearchBar setSearch={setSearch} />

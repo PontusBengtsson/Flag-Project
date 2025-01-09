@@ -102,7 +102,7 @@ const CountryPage = () => {
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '32px', width: '100%' }}>
-			<Box sx={{ width: '1200px', gap: 10, flexDirection: 'column', display: 'flex' }}>
+			<Box sx={{ width: '1150px', gap: 10, flexDirection: 'column', display: 'flex' }}>
 				<Box sx={{ mb: 4 }}>
 					<Button
 						variant="contained"

@@ -10,11 +10,11 @@ const SearchBar = ({ setSearch }) => {
     <Box
       component="form"
       sx={{
-        display: 'flex',
         borderRadius: '8px',
-        minWidth: '40%', // För att ta upp 100% av bredden på små skärmar
-        maxWidth: 370, // Begränsa maxbredd för större skärmar
-		backgroundColor: "background.default",
+        maxWidth: '370px', // Öka maxbredden
+        width: '100%', // Se till att komponenten tar upp tillgänglig bredd
+        height: 'auto',
+        backgroundColor: "background.default",
       }}
       noValidate
       autoComplete="off"
@@ -23,8 +23,14 @@ const SearchBar = ({ setSearch }) => {
         id="outlined-basic"
         label="Search for a country"
         variant="outlined"
-        sx={{ flex: 1 }}
+        sx={{ flex: 1, width: '100%' }} // Gör textfältet bredare
         onChange={handleSearchChange}
+        InputProps={{
+          style: { color: 'black' }, // Gör texten svart
+        }}
+        InputLabelProps={{
+          style: { color: 'black' }, // Gör etiketten svart
+        }}
       />
     </Box>
   );
