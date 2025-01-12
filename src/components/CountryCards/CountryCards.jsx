@@ -58,8 +58,8 @@ const CountryCards = ({ countries }) => {
 											objectFit: 'cover'
 										}}
 									/>
-									<Box sx={{ padding: '16px' }}>
-										<Box sx={{ margin: '0px 0px 0.35em' }}>
+									<Box sx={{ padding: '16px',height: '125px',display: 'flex',flexDirection: 'column', justifyContent: 'center' }}>
+										<Box sx={{ margin: '0px 0px 0.75em' }}>
 											<Typography
 												variant="h7"
 												sx={{ marginBottom: '8px', fontWeight: '600' }}
