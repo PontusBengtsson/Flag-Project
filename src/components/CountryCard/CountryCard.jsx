@@ -13,11 +13,10 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 				flexDirection: 'column',
 				alignItems: 'center',
 				justifyContent: 'center',
-				marginTop: '32px',
-				
+				marginTop: '32px'
 			}}
 		>
-			<Box sx={{width:'1150px', }}>
+			<Box sx={{ width: '1150px' }}>
 				<Button
 					variant="contained"
 					onClick={handleBackClick}
@@ -46,13 +45,11 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 						</svg>
 					}
 					sx={{
-						backgroundColor: 'background.paper',
 						color: 'black',
 						boxShadow: 'none',
 						padding: '5px',
 						textTransform: 'none',
-						'&:hover': { backgroundColor: 'background.button' },
-						marginBottom: '32px',
+						marginBottom: '32px'
 					}}
 				>
 					BACK
@@ -86,13 +83,13 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 							{country.name.common}
 						</Typography>
 						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-							<Box sx={{width:'50%'}}>
+							<Box sx={{ width: '50%' }}>
 								<DetailItem label="Population" value={country.population.toLocaleString()} />
 								<DetailItem label="Region" value={country.region} />
 								<DetailItem label="Capital" value={country.capital ? country.capital[0] : 'N/A'} />
 								<DetailItem label="Native Name" value={nativeName} />
 							</Box>
-							<Box sx={{width:'50%'}}>
+							<Box sx={{ width: '50%' }}>
 								<DetailItem label="Top Level Domain" value={topLevelDomain} />
 								<DetailItem
 									label="Currencies"
@@ -126,13 +123,15 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 			display: 'flex',
 			alignItems: 'center',
 			marginTop: '16px',
-			  // Centrera innehållet horisontellt
+			// Centrera innehållet horisontellt
+			overflowX: 'auto', // Tillåt rullning om innehållet inte får plats
+			whiteSpace: 'nowrap' // Se till att innehållet inte bryts till en ny rad
 		}}
 	>
 		<Typography
 			variant="body2"
 			sx={{
-				marginRight: '8px',
+				marginRight: '8px'
 			}}
 		>
 			<strong>Border Countries:</strong>
@@ -140,12 +139,9 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 		<Box
 			sx={{
 				display: 'flex',
-				overflowX: 'auto',
-				whiteSpace: 'nowrap',
-				
-				alignItems: 'center',
-				 // Lägg till detta för att centrera knapparna
-				flexWrap: 'wrap', // För att hantera knappar som går över till nästa rad om de inte får plats horisontellt
+				overflowX: 'auto', // Aktiv scroll om innehållet är för långt
+				whiteSpace: 'nowrap', // Hindra radbrytning mellan knappar
+				flexWrap: 'nowrap' // Hindra flex-wrap från att bryta raden
 			}}
 		>
 			{borders && borders.length > 0 ? (
@@ -159,10 +155,7 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 							color: 'black',
 							marginRight: '8px',
 							whiteSpace: 'nowrap',
-							'&:hover': {
-								backgroundColor: 'background.button'
-							},
-							flexShrink: 0,
+							flexShrink: 0 // Hindra att knapparna minskar i storlek
 						}}
 					>
 						{borderCountryCode}
@@ -174,9 +167,5 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 		</Box>
 	</Box>
 );
-
-
-
-
 
 export default CountryCard;
