@@ -37,7 +37,7 @@ const CountryCards = ({ countries }) => {
 							>
 								<Box
 									sx={{
-										backgroundColor: 'white',
+										
 										width: '100%',
 										cursor: 'pointer',
 										borderRadius: '4px',

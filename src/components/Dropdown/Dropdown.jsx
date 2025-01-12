@@ -13,7 +13,7 @@ const Dropdown = ({ setRegion, region }) => {
       <FormControl 
         fullWidth 
         sx={{ 
-          backgroundColor: theme.palette.background.default,
+          
           borderRadius: '4px',
         }}
       >

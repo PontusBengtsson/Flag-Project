@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles'; // Viktigt att använda rätt paket
 
 export const themeOptions = createTheme({
   palette: {
@@ -9,8 +9,9 @@ export const themeOptions = createTheme({
       contrastText: '#ffffff',
     },
     background: {
-      default: '#ffffff',
-      paper: '#f2f2f2',
+      default: '#f2f2f2', // Bakgrundsfärg för hela applikationen
+      paper: '#ffffff',
+      button: '#e8e8e8' // Bakgrund för "kort" och andra element
     },
     text: {
       primary: '#000000',

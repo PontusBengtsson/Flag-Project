@@ -46,12 +46,12 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 						</svg>
 					}
 					sx={{
-						backgroundColor: 'background.default',
+						backgroundColor: 'background.paper',
 						color: 'black',
 						boxShadow: 'none',
 						padding: '5px',
 						textTransform: 'none',
-						'&:hover': { backgroundColor: 'background.paper' },
+						'&:hover': { backgroundColor: 'background.button' },
 						marginBottom: '32px',
 					}}
 				>
@@ -126,13 +126,13 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 			display: 'flex',
 			alignItems: 'center',
 			marginTop: '16px',
+			  // Centrera innehållet horisontellt
 		}}
 	>
 		<Typography
 			variant="body2"
 			sx={{
 				marginRight: '8px',
-				 // Förhindrar att etiketten krymper
 			}}
 		>
 			<strong>Border Countries:</strong>
@@ -140,9 +140,12 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 		<Box
 			sx={{
 				display: 'flex',
-				overflowX: 'auto', // Lägg till horisontell scroll
-				whiteSpace: 'nowrap', // Förhindra radbrytning
-				paddingBottom: '8px', // För att undvika överlapp med scrollbaren
+				overflowX: 'auto',
+				whiteSpace: 'nowrap',
+				
+				alignItems: 'center',
+				 // Lägg till detta för att centrera knapparna
+				flexWrap: 'wrap', // För att hantera knappar som går över till nästa rad om de inte får plats horisontellt
 			}}
 		>
 			{borders && borders.length > 0 ? (
@@ -151,15 +154,15 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 						key={borderCountryCode}
 						onClick={() => handleBorderClick(borderCountryCode)}
 						sx={{
-							backgroundColor: 'background.paper',
+							backgroundColor: 'background.default',
 							borderRadius: '16px',
 							color: 'black',
 							marginRight: '8px',
-							whiteSpace: 'nowrap', // Förhindra radbrytning på knappen
+							whiteSpace: 'nowrap',
 							'&:hover': {
-								backgroundColor: 'background.paper'
+								backgroundColor: 'background.button'
 							},
-							flexShrink: 0, // Förhindrar att knapparna krymper
+							flexShrink: 0,
 						}}
 					>
 						{borderCountryCode}
@@ -171,6 +174,7 @@ const BorderCountries = ({ borders, handleBorderClick }) => (
 		</Box>
 	</Box>
 );
+
 
 
 

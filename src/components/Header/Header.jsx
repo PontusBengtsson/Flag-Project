@@ -53,7 +53,7 @@ const Header = () => {
 						</g>
 					</svg>
 
-					<Box>Light mode</Box>
+					<Box>Dark mode</Box>
 				</Button>
 			</Box>
 		</Box>

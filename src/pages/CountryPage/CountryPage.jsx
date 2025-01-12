@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import CountryCard from '../../components/CountryCard/CountryCard';
 
+
 const CountryPage = () => {
     const { countryCode } = useParams();
     const navigate = useNavigate();

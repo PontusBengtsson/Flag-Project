@@ -14,7 +14,7 @@ const SearchBar = ({ setSearch }) => {
         maxWidth: '370px', // Öka maxbredden
         width: '100%', // Se till att komponenten tar upp tillgänglig bredd
         height: 'auto',
-        backgroundColor: "background.default",
+        
       }}
       noValidate
       autoComplete="off"
