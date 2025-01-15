@@ -82,7 +82,7 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 						<Typography variant="h3" sx={{ marginBottom: '16px' }}>
 							{country.name.common}
 						</Typography>
-						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+						<Box sx={{ display: 'flex', flexDirection: 'row',marginBottom: '40px' }}>
 							<Box sx={{ width: '50%' }}>
 								<DetailItem label="Population" value={country.population.toLocaleString()} />
 								<DetailItem label="Region" value={country.region} />
