@@ -1,6 +1,8 @@
 // CountryCard.js
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles'; // För att hämta temat
 
 const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
 	const nativeName = country.name.nativeName ? Object.values(country.name.nativeName)[0].common : 'N/A';

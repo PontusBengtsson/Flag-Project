@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import CountryCards from '../../components/CountryCards/CountryCards';
 import Header from '../../components/Header/Header';
 import SecondHeader from '../../components/SecondHeader/SecondHeader';
-import CountryPage from '../CountryPage/CountryPage';
+import CountryPage from '../pages/CountryPage';
 
 const AppContent = () => {
   const [countries, setCountries] = useState([]);
@@ -12,8 +12,8 @@ const AppContent = () => {
   const [region, setRegion] = useState('');
   const [search, setSearch] = useState('');
 
-  const location = useLocation(); // Hämta den aktuella sökvägen
-  const showSecondHeader = location.pathname === '/'; // Kontrollera om vi är på startsidan
+  const location = useLocation();
+  const showSecondHeader = location.pathname === '/';
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -21,7 +21,7 @@ const AppContent = () => {
         const response = await fetch('https://restcountries.com/v3.1/all');
         const data = await response.json();
         setCountries(data);
-        setFilteredCountries(data); // Initialize with all countries
+        setFilteredCountries(data);
       } catch (error) {
         console.error(error);
       }
@@ -52,13 +52,10 @@ const AppContent = () => {
 
   return (
     <Box>
-      <Header />
+     
       {showSecondHeader && <SecondHeader setRegion={setRegion} setSearch={setSearch} />}
       <Routes>
-        <Route
-          path="/"
-          element={<CountryCards countries={filteredCountries} />}
-        />
+        <Route path="/" element={<CountryCards countries={filteredCountries} />} />
         <Route path="/country/:countryCode" element={<CountryPage />} />
       </Routes>
     </Box>
