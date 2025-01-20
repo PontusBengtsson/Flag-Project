@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { Typography, Button, Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles'; // För att få åtkomst till temat
 import CountryCard from '../../components/CountryCard/CountryCard';
 
 const CountryPage = () => {
@@ -8,6 +9,7 @@ const CountryPage = () => {
   const navigate = useNavigate();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
+  const theme = useTheme(); // Använd temat
 
   useEffect(() => {
     const fetchCountry = async () => {
@@ -39,11 +41,27 @@ const CountryPage = () => {
   };
 
   return country ? (
-    <CountryCard
-      country={country}
-      handleBorderClick={handleBorderClick}
-      handleBackClick={handleBackClick}
-    />
+    <Box sx={{ padding: '16px' }}>
+      {/* Back-knapp */}
+      {/* <Button
+        onClick={handleBackClick}
+        sx={{
+          marginBottom: '16px',
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.text.primary, // Anpassa textfärgen efter temat
+          '&:hover': {
+            backgroundColor: theme.palette.action.hover, // Lättare färg vid hover
+          },
+        }}
+      >
+        Back
+      </Button> */}
+      <CountryCard
+        country={country}
+        handleBorderClick={handleBorderClick}
+        handleBackClick={handleBackClick}
+      />
+    </Box>
   ) : (
     <Typography>Country not found</Typography>
   );
