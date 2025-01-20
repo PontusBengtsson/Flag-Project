@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { WbSunny, NightsStay } from '@mui/icons-material'; // Ikoner för ljus och mörkt läge
+import { useTheme } from '@mui/material/styles';
 
 const Header = ({ toggleTheme, isDarkMode }) => {
+  const theme = useTheme(); // Hämta det aktuella temat
+
   return (
     <Box
       sx={{
@@ -11,6 +14,8 @@ const Header = ({ toggleTheme, isDarkMode }) => {
         flexDirection: 'row',
         width: '100%',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+        backgroundColor: theme.palette.background.paper, // Använd temats färg
+        color: theme.palette.text.primary, // Använd temats textfärg
       }}
     >
       <Box
@@ -25,12 +30,15 @@ const Header = ({ toggleTheme, isDarkMode }) => {
         }}
       >
         <Box>The Flag App</Box>
-        <img
-          id="Techover-logo"
-          src="/assets/techover-logo-dark.png"
-          style={{ maxHeight: '100%', maxWidth: '100%' }}
-          alt="Techover"
-        />
+        {isDarkMode ?  <img
+          id="Techover"
+          src="/assets/techover-logo.png"
+          alt="Techover-logo"
+        /> : <img
+        id="Techover-logo-dark"
+        src="/assets/techover-logo-dark.png"
+        alt="Techover-logo-dark"
+      />}
         <Button
           sx={{
             display: 'flex',
@@ -41,9 +49,17 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           }}
           onClick={toggleTheme}
         >
-          {/* Byt ikon beroende på tema */}
-          {isDarkMode ? <WbSunny /> : <NightsStay />}
-          <Box>{isDarkMode ? 'Light mode' : 'Dark mode'}</Box>
+          
+          {isDarkMode ?  <img
+          id="Moon"
+          src="/assets/moon.svg"
+          alt="Moon"
+        /> : <img
+        id="Moon-bordered"
+        src="/assets/moon-bordered.svg"
+        alt="Moon-bordered"
+      />}
+          <Box>{isDarkMode ? 'Dark mode' : 'Light Mode'}</Box>
         </Button>
       </Box>
     </Box>

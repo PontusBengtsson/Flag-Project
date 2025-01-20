@@ -170,7 +170,7 @@ const BorderCountries = ({ borders, handleBorderClick }) => {
                 whiteSpace: 'nowrap',
                 flexShrink: 0,
                 '&:hover': {
-                  backgroundColor: 'primary.main', // Hover-effekt
+                  backgroundColor: 'background.paper', // Hover-effekt
                 },
               }}
             >

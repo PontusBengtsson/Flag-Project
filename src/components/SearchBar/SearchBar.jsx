@@ -1,7 +1,10 @@
 import React from 'react';
 import { Box, TextField } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 const SearchBar = ({ setSearch }) => {
+  const theme = useTheme(); // Hämta det aktuella temat
+
   const handleSearchChange = (event) => {
     setSearch(event.target.value);
   };
@@ -11,10 +14,9 @@ const SearchBar = ({ setSearch }) => {
       component="form"
       sx={{
         borderRadius: '8px',
-        maxWidth: '370px', // Öka maxbredden
-        width: '100%', // Se till att komponenten tar upp tillgänglig bredd
+        maxWidth: '370px',
+        width: '100%',
         height: 'auto',
-        
       }}
       noValidate
       autoComplete="off"
@@ -23,13 +25,25 @@ const SearchBar = ({ setSearch }) => {
         id="outlined-basic"
         label="Search for a country"
         variant="outlined"
-        sx={{ flex: 1, width: '100%' }} // Gör textfältet bredare
-        onChange={handleSearchChange}
-        InputProps={{
-          style: { color: 'black' }, // Gör texten svart
+        sx={{
+          flex: 1,
+          width: '100%',
+          '& .MuiOutlinedInput-root': {
+            color: theme.palette.text.primary, // Textfärg från temat
+            backgroundColor: theme.palette.background.default, // Bakgrund från temat
+            '& fieldset': {
+              borderColor: theme.palette.text.secondary, // Sekundärfärg för kant
+            },
+            '&:hover fieldset': {
+              borderColor: theme.palette.text.primary, // Primärfärg vid hover
+            },
+          },
         }}
+        onChange={handleSearchChange}
         InputLabelProps={{
-          style: { color: 'black' }, // Gör etiketten svart
+          style: {
+            color: theme.palette.text.primary, // Etikettfärg från temat
+          },
         }}
       />
     </Box>

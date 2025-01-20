@@ -2,38 +2,53 @@ import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
 
 const Dropdown = ({ setRegion, region }) => {
-  const theme = useTheme();
+  const theme = useTheme(); // Hämta det aktuella temat
 
   const handleRegionChange = (event) => {
-    setRegion(event.target.value); // Updates the parent state
+    setRegion(event.target.value); // Uppdatera förälderns state
   };
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 180 }}> {/* Max width for the dropdown */}
-      <FormControl 
-        fullWidth 
-        sx={{ 
-          
+    <Box sx={{ width: '100%', maxWidth: 180 }}>
+      <FormControl
+        fullWidth
+        sx={{
           borderRadius: '4px',
+          backgroundColor: theme.palette.background.default, // Bakgrund från temat
         }}
       >
-        <InputLabel 
+        <InputLabel
           id="region-select-label"
-          sx={{ color: 'black' }} // Svart etiketttext
+          sx={{
+            color: theme.palette.text.primary, // Etikettens textfärg
+          }}
         >
           Region
         </InputLabel>
         <Select
           labelId="region-select-label"
           id="region-select"
-          value={region || ''} // Ensure that value is either a valid option or ''
+          value={region || ''} // Se till att värdet är giltigt
           onChange={handleRegionChange}
           label="Region"
-          sx={{ color: 'black' }} // Svart text för val
+          sx={{
+            color: theme.palette.text.primary, // Textfärg för val
+            backgroundColor: theme.palette.background.default, // Bakgrund från temat
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.text.secondary, // Kantfärg
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.text.primary, // Kantfärg vid hover
+            },
+            '& .MuiSelect-icon': {
+              color: theme.palette.text.primary, // Ändra pilens färg
+            },
+          }}
           MenuProps={{
             PaperProps: {
               style: {
-                color: 'black', // Textfärg för menyval
+                backgroundColor: theme.palette.background.paper, // Menyns bakgrundsfärg
+                color: theme.palette.text.primary, // Menyns textfärg
               },
             },
           }}
