@@ -18,7 +18,7 @@ const SecondHeader = ({ setRegion, setSearch }) => {
         margin: '32px 0px',
         backgroundColor: theme.palette.background.default, // Använd temats bakgrundsfärg
         color: theme.palette.text.primary, // Använd temats textfärg
-        padding: '16px', // Lägger till padding för att separera innehållet
+         // Lägger till padding för att separera innehållet
       }}
     >
       <Box
