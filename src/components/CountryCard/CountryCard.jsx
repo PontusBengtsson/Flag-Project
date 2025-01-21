@@ -18,7 +18,6 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
       }}
     >
       <Box sx={{ width: '1150px' }}>
-        
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
           <Box
             sx={{

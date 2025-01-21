@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 const CountryCards = ({ countries }) => {
 	const theme = useTheme();
 
-	const isLoading = countries || countries.length === 0; // Kontrollera laddningsstatus
+	const isLoading = !countries || countries.length === 0; // Kontrollera laddningsstatus
 
 	return (
 		<Box
