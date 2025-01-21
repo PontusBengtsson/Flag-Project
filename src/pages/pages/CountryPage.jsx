@@ -25,7 +25,7 @@ const CountryPage = () => {
 			} catch (error) {
 				console.error(error); // Log error if fetch fails
 			} finally {
-				setLoading(true); // Set loading to false after fetch completes
+				setLoading(false); // Set loading to false after fetch completes
 			}
 		};
 
