@@ -106,9 +106,10 @@ const CountryPage = () => {
     backgroundColor: theme.palette.background.default,
     boxShadow: 'none',
     padding: '5px',
+    
     textTransform: 'none',
     '&:hover': {
-      backgroundColor: theme.palette.action.hover
+      backgroundColor: "#b5b5b5"
     },
     display: 'flex',  // Gör så att innehållet (ikonen och texten) kan justeras horisontellt
     alignItems: 'center' // Centrerar innehållet vertikalt i knappen

@@ -21,7 +21,7 @@ export const darkTheme = createTheme({
   palette: {
     primary: {
       main: '#ffffff',
-      contrastText: '#2B3844',
+      contrastText: '#f2f2f2',
     },
     background: {
       default: '#202C36', //standard darkmode

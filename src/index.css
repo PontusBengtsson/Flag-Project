@@ -1,137 +1,131 @@
-
+/* Grundläggande styling */
 * {
-    font-family: 'Open sans', sans-serif;
-}
-
-
-.App {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    
-}
-
-
-body {
-    
-    margin: 0;
-    padding: 0;
-}
-
-* {
+  font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
 }
-.countries-container {
-    padding: 0;
-    margin: 0;
-  }
-  .country-card {
-    margin: 0;
-    padding: 0;
-  }
-  
 
+body {
+  margin: 0;
+  padding: 0;
+}
 
+/* App Container */
+.App {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Scrollbar Styling */
+.scrollbar-style {
+  overflow-y: scroll;           /* Aktivera vertikal scroll */
+}
+
+.scrollbar-style::-webkit-scrollbar {
+  width: 10px;                  /* Bredden på scrollbarens spår */
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb {
+  background-color: #888;       /* Färg på scrollbarren */
+  border-radius: 5px;           /* Rundade hörn */
+}
+
+.scrollbar-style::-webkit-scrollbar-thumb:hover {
+  background-color: #555;       /* Ändra färg vid hover */
+}
+
+/* Scroll Container */
 .scroll-container {
-    width: 300px;           /* Ange bredden på containern */
-    height: 150px;          /* Ange höjden på containern */
-    overflow-y: scroll;     /* Lägg till en scrollbar endast för vertikalt rullande */
-    border: 1px solid #ccc; /* Lägg till en kantlinje för synlighet */
-    padding: 0px;          /* Lite padding för att skapa utrymme inuti containern */
+  width: 300px;
+  height: 150px;
+  border: 1px solid #ccc;
+  padding: 0;
+  margin: 0;
+  /* Återanvänd scrollbar-stilen */
+  composes: scrollbar-style;
 }
 
-.scroll-container::-webkit-scrollbar {
-    width: 10px;            /* Bredd på scrollbarens spår */
+/* Country Card */
+.country-card {
+  width: 100%;
+  margin: 10px 0;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 150px;            /* Begränsa höjden för scroll */
+  /* Återanvänd scrollbar-stilen */
+  composes: scrollbar-style;
 }
 
-.scroll-container::-webkit-scrollbar-thumb {
-    background-color: #888; /* Färg på scrollbarren */
-    border-radius: 5px;     /* Rundar hörnen på scrollbarren */
-}
-
-.scroll-container::-webkit-scrollbar-thumb:hover {
-    background-color: #555; /* Ändrar färg när man håller musen över scrollbarren */
-}
-
-
-/* För extra små skärmar (mobiler i stående läge, max 480px) */
+/* Responsiv Design */
 @media (max-width: 480px) {
-    body {
+  body {
       font-size: 14px;
       background-color: lightgrey;
-    }
+  }
 
- 
-
-      
-
-      
-  
-    .country-card {
-      width: 100%; /* Anpassar bredden för mobiler */
+  .country-card {
+      width: 100%;
       margin: 10px 0;
-    }
-  
-    .country-list {
+  }
+
+  .country-list {
       flex-direction: column;
       align-items: center;
-    }
   }
-  
-  /* För små skärmar (små surfplattor i stående läge, 481px till 768px) */
-  @media (min-width: 481px) and (max-width: 768px) {
-    body {
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  body {
       font-size: 15px;
       background-color: lightblue;
-    }
-  
-    .scroll-container {
-      width: 100%;
-    }
-  
-    
-    .country-card {
-      width: 200px; /* Anpassar bredden för mindre surfplattor */
-    }
-  
-    .country-list {
-      justify-content: space-between;
-    }
-
-    #Techover-logo {
-        display: none;
-    }
   }
-  
-  /* För medelstora skärmar (surfplattor och små laptops, 769px till 1024px) */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    body {
+
+  .scroll-container {
+      width: 100%;
+  }
+
+  .country-card {
+      width: 200px;
+  }
+
+  .country-list {
+      justify-content: space-between;
+  }
+
+  #Techover-logo {
+      display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  body {
       font-size: 15px;
       background-color: lightgreen;
-    }
-  
-    .country-card {
-      width: 30%; /* Anpassar bredden för surfplattor */
-    }
-  
-    .country-list {
-      gap: 15px;
-    }
   }
-  
-  /* För stora skärmar (vanliga laptops och desktops, 1025px och uppåt) */
-  @media (min-width: 1025px) {
-    body {
+
+  .country-card {
+      width: 30%;
+  }
+
+  .country-list {
+      gap: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  body {
       font-size: 16px;
       background-color: white;
-    }
-  
-    .country-card {
-      width: 20%; /* Anpassar bredden för desktops */
-    }
-  
-    .country-list {
-      gap: 20px;
-    }
   }
-  
+
+  .country-card {
+      width: 20%;
+  }
+
+  .country-list {
+      gap: 20px;
+  }
+}

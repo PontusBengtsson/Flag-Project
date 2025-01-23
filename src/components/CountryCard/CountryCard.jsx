@@ -66,25 +66,38 @@ const DetailItem = ({ label, value }) => (
 );
 
 const BorderCountries = ({ borders, handleBorderClick }) => {
-    const theme = useTheme();
-
     return (
-        <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '16px' }}>
-            <Typography variant="body2" sx={{ marginRight: '8px' }}>
+        <Box sx={{ marginTop: '16px', display: 'flex' }}>
+            <Typography variant="body2" sx={{  display: 'flex', alignItems: 'center',  }}>
                 <strong>Border Countries:</strong>
             </Typography>
-            <Box sx={{ display: 'flex', gap: '8px' }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'nowrap',
+                    overflowX: 'auto', // Möjliggör horisontell scroll
+                    gap: '8px',
+                    padding: '8px 0',
+                    margin: '10px'
+                    // Anpassad scrollbar för WebKit-baserade webbläsare (Chrome, Edge)
+                  
+                }}
+            >
                 {borders && borders.length > 0 ? (
                     borders.map((borderCountryCode) => (
                         <Button
                             key={borderCountryCode}
                             onClick={() => handleBorderClick(borderCountryCode)}
                             sx={{
-                                backgroundColor: theme.palette.background.paper,
+                                
                                 borderRadius: '16px',
-                                color: theme.palette.text.primary,
+                               
+                                backgroundColor: 'background.paper',
+                                whiteSpace: 'nowrap',
+                                boxShadow: 'none',
+                                border: '1px solid #ddd', // Tunn kantlinje
                                 '&:hover': {
-                                    backgroundColor: theme.palette.action.hover,
+                                    backgroundColor: '#b5b5b5', 
                                 },
                             }}
                         >
@@ -98,5 +111,6 @@ const BorderCountries = ({ borders, handleBorderClick }) => {
         </Box>
     );
 };
+
 
 export default CountryCard;
