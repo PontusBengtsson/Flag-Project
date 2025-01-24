@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import { WbSunny, NightsStay } from '@mui/icons-material'; // Ikoner för ljus och mörkt läge
 import { useTheme } from '@mui/material/styles';
+import "../../index.css";
+
 
 const Header = ({ toggleTheme, isDarkMode }) => {
   const theme = useTheme(); // Hämta det aktuella temat
@@ -31,11 +32,11 @@ const Header = ({ toggleTheme, isDarkMode }) => {
       >
         <Box>The Flag App</Box>
         {isDarkMode ?  <img
-          id="Techover"
+          className="techover-logo"
           src="/assets/techover-logo.png"
           alt="Techover-logo"
         /> : <img
-        id="Techover-logo-dark"
+        className="techover-logo"
         src="/assets/techover-logo-dark.png"
         alt="Techover-logo-dark"
       />}

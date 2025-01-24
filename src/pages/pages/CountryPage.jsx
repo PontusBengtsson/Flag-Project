@@ -126,7 +126,7 @@ const CountryPage = () => {
           transform="translate(-16263 -1083.587)"
           fill="none"
           stroke={theme.palette.text.primary}
-          stroke-width="2"
+          strokeWidth="2"
         />
         <line
           id="Line_68"
@@ -135,7 +135,7 @@ const CountryPage = () => {
           transform="translate(204.395 147.155)"
           fill="none"
           stroke={theme.palette.text.primary}
-          stroke-width="2"
+          strokeWidth="2"
         />
       </g>
     </svg>
