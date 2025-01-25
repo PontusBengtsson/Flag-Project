@@ -33,18 +33,18 @@ const CountryCard = ({ country, handleBorderClick }) => {
                         </Typography>
                         <DetailsSection
                             details={[
-                                { label: 'Population', value: country.population.toLocaleString() },
-                                { label: 'Region', value: country.region },
-                                { label: 'Capital', value: country.capital ? country.capital[0] : 'N/A' },
+                                { label: 'Population', value: country.population ? country.population.toLocaleString() : 'N/A' },
+                                { label: 'Region', value: country.region || 'N/A' },
+                                { label: 'Capital', value: country.capital && country.capital[0] ? country.capital[0] : 'N/A' },
                                 { label: 'Native Name', value: nativeName },
                                 { label: 'Top Level Domain', value: topLevelDomain },
                                 { 
                                     label: 'Currencies', 
-                                    value: Object.values(country.currencies).map((c) => c.name).join(', '),
+                                    value: country.currencies ? Object.values(country.currencies).map((c) => c.name).join(', ') : 'N/A',
                                 },
                                 { 
                                     label: 'Languages', 
-                                    value: Object.values(country.languages).join(', '),
+                                    value: country.languages ? Object.values(country.languages).join(', ') : 'N/A',
                                 },
                             ]}
                         />

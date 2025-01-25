@@ -12,6 +12,7 @@ const AppContent = () => {
   const [region, setRegion] = useState('');
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(''); // Felmeddelande state
 
   const location = useLocation();
   const showSecondHeader = location.pathname === '/';
@@ -51,6 +52,13 @@ const AppContent = () => {
     }
 
     setFilteredCountries(filtered);
+
+    // Om inget land hittades, sätt felmeddelandet
+    if (filtered.length === 0 && search !== '') {
+      setErrorMessage('Could not find that country!');
+    } else {
+      setErrorMessage(''); // Ta bort felmeddelandet om resultat hittades
+    }
   };
 
   return (
@@ -63,7 +71,19 @@ const AppContent = () => {
         />
       )}
       <Routes>
-        <Route path="/" element={<CountryCards countries={filteredCountries} isLoading={isLoading} />} />
+        <Route
+          path="/"
+          element={
+            <>
+              {errorMessage && (
+                <Box sx={{ textAlign: 'center', color: 'red', marginBottom: '16px' }}>
+                  <strong>{errorMessage}</strong>
+                </Box>
+              )}
+              <CountryCards countries={filteredCountries} isLoading={isLoading} />
+            </>
+          }
+        />
         <Route
           path="/country/:countryCode"
           element={<CountryPage setRegion={setRegion} setSearch={setSearch} />}
