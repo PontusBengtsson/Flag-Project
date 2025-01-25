@@ -1,4 +1,4 @@
-/* Grundläggande styling */
+
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
@@ -9,14 +9,6 @@ body {
   padding: 0;
 }
 
-/* App Container */
-.App {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Scrollbar Styling */
 .scrollbar-style {
   overflow-y: scroll;           /* Aktivera vertikal scroll */
 }
@@ -45,87 +37,22 @@ body {
   
 }
 
-/* Country Card */
-.country-card {
-  width: 100%;
-  margin: 10px 0;
-  padding: 15px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 150px;            /* Begränsa höjden för scroll */
-  /* Återanvänd scrollbar-stilen */
+
+@media (min-width: 300px) and (max-width: 768px) {
+ 
+
+  .techover-logo {
+    display: none !important;
+}
   
 }
 
-/* Responsiv Design */
-@media (max-width: 480px) {
-  body {
-      font-size: 14px;
-      background-color: lightgrey;
-  }
-
-  .country-card {
-      width: 100%;
-      margin: 10px 0;
-  }
-
-  .country-list {
-      flex-direction: column;
-      align-items: center;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 768px) {
-  body {
-      font-size: 15px;
-      background-color: lightblue;
-  }
-
-  .scroll-container {
-      width: 100%;
-  }
-
-  .country-card {
-      width: 200px;
-  }
-
-  .country-list {
-      justify-content: space-between;
-  }
-
+@media (min-width: 700px) and (max-width: 1000px) {
+ 
   .techover-logo {
-      display: none !important;
-  }
+    display: none !important;
+}
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  body {
-      font-size: 15px;
-      background-color: lightgreen;
-  }
+ 
 
-  .country-card {
-      width: 30%;
-  }
-
-  .country-list {
-      gap: 15px;
-  }
-}
-
-@media (min-width: 1025px) {
-  body {
-      font-size: 16px;
-      background-color: white;
-  }
-
-  .country-card {
-      width: 20%;
-  }
-
-  .country-list {
-      gap: 20px;
-  }
-}

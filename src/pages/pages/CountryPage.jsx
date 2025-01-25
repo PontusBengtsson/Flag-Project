@@ -4,6 +4,7 @@ import { Box, Typography, Button, Skeleton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import CountryCard from '../../components/CountryCard/CountryCard';
 
+// Hjälpfunktion för Skeleton-box
 const SkeletonBox = ({ width, height, sx = {} }) => (
   <Skeleton variant="rectangular" width={width} height={height} sx={{ borderRadius: '4px', ...sx }} />
 );
@@ -15,14 +16,13 @@ const CountryPage = ({ setRegion, setSearch }) => {
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
 
+  // Hämtar data för landet
   useEffect(() => {
     const fetchCountry = async () => {
       setLoading(true);
       try {
         const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch country data');
-        }
+        if (!response.ok) throw new Error('Failed to fetch country data');
         const data = await response.json();
         setCountry(data[0]);
       } catch (error) {
@@ -31,20 +31,22 @@ const CountryPage = ({ setRegion, setSearch }) => {
         setLoading(false);
       }
     };
-
     fetchCountry();
   }, [countryCode]);
 
+  // Återgå till föregående vy
   const handleBackClick = () => {
-    setRegion(''); // Reset region
-    setSearch(''); // Reset search
-    navigate('/'); // Navigate back to homepage
+    setRegion('');
+    setSearch('');
+    navigate('/');
   };
 
+  // Navigera till gränslandssidan
   const handleBorderCountryClick = (borderCountryCode) => {
     navigate(`/country/${borderCountryCode}`);
   };
 
+  // Om data laddas, visa skeleton
   if (loading) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -56,19 +58,8 @@ const CountryPage = ({ setRegion, setSearch }) => {
               <SkeletonBox width="50%" height={56} sx={{ marginBottom: '16px' }} />
               <Box sx={{ display: 'flex', flexDirection: 'row', width: '100%', marginBottom: '30px' }}>
                 {[...Array(4)].map((_, i) => (
-                  <Box
-                    key={i}
-                    sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      width: '100%',
-                      gap: '10px',
-                      marginLeft: i === 0 ? 0 : '20px',
-                    }}
-                  >
-                    {[...Array(4 - i)].map((_, j) => (
-                      <SkeletonBox key={j} />
-                    ))}
+                  <Box key={i} sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: '10px', marginLeft: i === 0 ? 0 : '20px' }}>
+                    {[...Array(4 - i)].map((_, j) => <SkeletonBox key={j} />)}
                   </Box>
                 ))}
               </Box>
@@ -80,6 +71,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
     );
   }
 
+  // Om ingen data finns för landet
   if (!country) {
     return (
       <Box sx={{ padding: '16px', marginTop: '32px', textAlign: 'center' }}>
@@ -88,7 +80,19 @@ const CountryPage = ({ setRegion, setSearch }) => {
     );
   }
 
-  const isDarkMode = theme.palette.mode === 'dark';
+  // Funktion för att rendera back-knappen med rätt ikon beroende på läge
+  const renderBackButtonIcon = () => {
+    const isDarkMode = theme.palette.mode === 'dark';
+    const svgPath = "M16475.775,1222.011l-8.639,8.639,8.639,8.639";
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" width="32.242" height="18.693" viewBox="0 0 32.242 18.693">
+        <g id="arrow-left" transform="translate(-202.723 -137.717)">
+          <path id="Path_278" data-name="Path 278" d={svgPath} transform="translate(-16263 -1083.587)" fill="none" stroke={theme.palette.text.primary} strokeWidth="2" />
+          <line id="Line_68" data-name="Line 68" x1="30.57" transform="translate(204.395 147.155)" fill="none" stroke={theme.palette.text.primary} strokeWidth="2" />
+        </g>
+      </svg>
+    );
+  };
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '32px' }}>
@@ -102,64 +106,14 @@ const CountryPage = ({ setRegion, setSearch }) => {
             boxShadow: 'none',
             padding: '5px',
             textTransform: 'none',
-            '&:hover': {
-              backgroundColor: '#b5b5b5',
-            },
+            '&:hover': { backgroundColor: '#b5b5b5' },
             display: 'flex',
             alignItems: 'center',
           }}
         >
-
-{isDarkMode ? (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32.242" height="18.693" viewBox="0 0 32.242 18.693">
-      <g id="Group_1069" data-name="Group 1069" transform="translate(-202.723 -137.717)">
-        <path
-          id="Path_278"
-          data-name="Path 278"
-          d="M16475.775,1222.011l-8.639,8.639,8.639,8.639"
-          transform="translate(-16263 -1083.587)"
-          fill="none"
-          stroke={theme.palette.text.primary}
-          strokeWidth="2"
-        />
-        <line
-          id="Line_68"
-          data-name="Line 68"
-          x1="30.57"
-          transform="translate(204.395 147.155)"
-          fill="none"
-          stroke={theme.palette.text.primary}
-          strokeWidth="2"
-        />
-      </g>
-    </svg>
-  ) : (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32.242" height="18.693" viewBox="0 0 32.242 18.693">
-      <g id="arrow-left" transform="translate(-202.723 -137.717)">
-        <path
-          id="Path_278"
-          data-name="Path 278"
-          d="M16475.775,1222.011l-8.639,8.639,8.639,8.639"
-          transform="translate(-16263 -1083.587)"
-          fill="none"
-          stroke={theme.palette.text.primary}
-          stroke-width="2"
-        />
-        <line
-          id="Line_68"
-          data-name="Line 68"
-          x1="30.57"
-          transform="translate(204.395 147.155)"
-          fill="none"
-          stroke={theme.palette.text.primary}
-          stroke-width="2"
-        />
-      </g>
-    </svg>
-  )}
+          {renderBackButtonIcon()}
           <span style={{ marginLeft: '5px' }}>BACK</span>
         </Button>
-
         <CountryCard
           country={country}
           handleBackClick={handleBackClick}

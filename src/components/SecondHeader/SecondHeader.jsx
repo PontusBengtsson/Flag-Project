@@ -20,10 +20,12 @@ const SecondHeader = ({ setRegion, setSearch, isLoading }) => {
   const contentBoxStyles = {
     display: 'flex',
     flexDirection: { xs: 'column', sm: 'row' }, // Kolumn på små skärmar, rad på större
-    justifyContent: 'space-between',
+    justifyContent: { xs: 'flex-start', sm: 'space-between' }, // Justera till höger på små skärmar
     alignItems: 'center',
     width: '100%',
     maxWidth: '1150px', // Max bredd för layouten
+    paddingRight: { xs: '16px', sm: '0' }, // Lägg till padding för att hålla elementen till höger
+    paddingLeft: { xs: '16px', sm: '0' }, // Lägg till padding på vänster sida på små skärmar
   };
 
   const renderSkeleton = (width, height) => (
@@ -32,7 +34,12 @@ const SecondHeader = ({ setRegion, setSearch, isLoading }) => {
 
   return (
     <Box sx={commonBoxStyles}>
-      <Box sx={contentBoxStyles}>
+      <Box
+        sx={{
+          ...contentBoxStyles,
+          flexDirection: { xs: 'column', sm: 'row' }, // Kolumn på små skärmar, rad på större
+        }}
+      >
         {isLoading ? renderSkeleton('370px', '56px') : <SearchBar setSearch={setSearch} />}
         {isLoading ? renderSkeleton('180px', '56px') : <Dropdown setRegion={setRegion} />}
       </Box>

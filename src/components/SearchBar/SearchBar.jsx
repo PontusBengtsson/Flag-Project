@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar = ({ setSearch, countries }) => {
-  const theme = useTheme(); // Hämta det aktuella temat
+  const theme = useTheme();
+  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState('');
 
   // Hantera ändringar i sökfältet
   const handleSearchChange = (event) => {
     const query = event.target.value;
-    setSearch(query); // Uppdatera sökningen
+    setSearch(query);
 
     if (query === '') {
       setErrorMessage('');
@@ -18,6 +20,18 @@ const SearchBar = ({ setSearch, countries }) => {
         country.name.common.toLowerCase().includes(query.toLowerCase())
       );
       setErrorMessage(countryFound ? '' : 'Could not find that country!');
+    }
+  };
+
+  // Hantera Enter-knapptryckning
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      const query = event.target.value;
+
+      if (query && errorMessage) {
+        // Om ingen träff finns, navigera till startsidan
+        navigate('/');
+      }
     }
   };
 
@@ -58,6 +72,7 @@ const SearchBar = ({ setSearch, countries }) => {
         variant="outlined"
         sx={inputStyles}
         onChange={handleSearchChange}
+        onKeyDown={handleKeyDown} 
         InputLabelProps={{ style: labelStyles }}
       />
 
