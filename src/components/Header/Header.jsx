@@ -3,9 +3,16 @@ import { Box, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import "../../index.css";
 
-
 const Header = ({ toggleTheme, isDarkMode }) => {
-  const theme = useTheme(); // Hämta det aktuella temat
+  const theme = useTheme();
+
+  const logoSrc = isDarkMode 
+    ? "/assets/techover-logo.png" 
+    : "/assets/techover-logo-dark.png";
+
+  const moonIconSrc = isDarkMode 
+    ? "/assets/moon.svg" 
+    : "/assets/moon-bordered.svg";
 
   return (
     <Box
@@ -15,8 +22,8 @@ const Header = ({ toggleTheme, isDarkMode }) => {
         flexDirection: 'row',
         width: '100%',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        backgroundColor: theme.palette.background.paper, // Använd temats färg
-        color: theme.palette.text.primary, // Använd temats textfärg
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
       }}
     >
       <Box
@@ -27,19 +34,15 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           alignItems: 'center',
           justifyContent: 'space-between',
           width: '1150px',
-          padding: '12px 0px 12px 0px',
+          padding: '12px 0',
         }}
       >
         <Box>The Flag App</Box>
-        {isDarkMode ?  <img
+        <img
           className="techover-logo"
-          src="/assets/techover-logo.png"
+          src={logoSrc}
           alt="Techover-logo"
-        /> : <img
-        className="techover-logo"
-        src="/assets/techover-logo-dark.png"
-        alt="Techover-logo-dark"
-      />}
+        />
         <Button
           sx={{
             display: 'flex',
@@ -50,17 +53,12 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           }}
           onClick={toggleTheme}
         >
-          
-          {isDarkMode ?  <img
-          id="Moon"
-          src="/assets/moon.svg"
-          alt="Moon"
-        /> : <img
-        id="Moon-bordered"
-        src="/assets/moon-bordered.svg"
-        alt="Moon-bordered"
-      />}
-          <Box>{isDarkMode ? 'Dark mode' : 'Light Mode'}</Box>
+          <img
+            id="Moon"
+            src={moonIconSrc}
+            alt="Moon Icon"
+          />
+          <Box>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</Box>
         </Button>
       </Box>
     </Box>

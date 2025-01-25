@@ -8,23 +8,17 @@ const SkeletonBox = ({ width, height, sx = {} }) => (
   <Skeleton variant="rectangular" width={width} height={height} sx={{ borderRadius: '4px', ...sx }} />
 );
 
-const CountryPage = () => {
+const CountryPage = ({ setRegion, setSearch }) => {
   const { countryCode } = useParams();
   const navigate = useNavigate();
   const [country, setCountry] = useState(null);
   const [loading, setLoading] = useState(true);
-  const theme = useTheme(); // Använd useTheme för att få åtkomst till temat
-
-  // Logga temats läge för felsökning
-  useEffect(() => {
-    console.log('Current theme mode:', theme.palette.mode);
-  }, [theme]);
+  const theme = useTheme();
 
   useEffect(() => {
     const fetchCountry = async () => {
       setLoading(true);
       try {
-        console.log('Fetching country with countryCode: ', countryCode);
         const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
         if (!response.ok) {
           throw new Error('Failed to fetch country data');
@@ -42,7 +36,9 @@ const CountryPage = () => {
   }, [countryCode]);
 
   const handleBackClick = () => {
-    navigate('/');
+    setRegion(''); // Reset region
+    setSearch(''); // Reset search
+    navigate('/'); // Navigate back to homepage
   };
 
   const handleBorderCountryClick = (borderCountryCode) => {
@@ -67,7 +63,7 @@ const CountryPage = () => {
                       flexDirection: 'column',
                       width: '100%',
                       gap: '10px',
-                      marginLeft: i === 0 ? 0 : '20px'
+                      marginLeft: i === 0 ? 0 : '20px',
                     }}
                   >
                     {[...Array(4 - i)].map((_, j) => (
@@ -92,31 +88,29 @@ const CountryPage = () => {
     );
   }
 
-  // Kontrollera om mörkt läge är aktivt
   const isDarkMode = theme.palette.mode === 'dark';
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '32px' }}>
       <Box sx={{ width: '1150px' }}>
-      <Button
-  variant="contained"
-  onClick={handleBackClick}
-  sx={{
-    color: theme.palette.text.primary,
-    backgroundColor: theme.palette.background.default,
-    boxShadow: 'none',
-    padding: '5px',
-    
-    textTransform: 'none',
-    '&:hover': {
-      backgroundColor: "#b5b5b5"
-    },
-    display: 'flex',  // Gör så att innehållet (ikonen och texten) kan justeras horisontellt
-    alignItems: 'center' // Centrerar innehållet vertikalt i knappen
-  }}
->
-  {/* Använd isDarkMode för att byta färg på pilen */}
-  {isDarkMode ? (
+        <Button
+          variant="contained"
+          onClick={handleBackClick}
+          sx={{
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.background.default,
+            boxShadow: 'none',
+            padding: '5px',
+            textTransform: 'none',
+            '&:hover': {
+              backgroundColor: '#b5b5b5',
+            },
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+
+{isDarkMode ? (
     <svg xmlns="http://www.w3.org/2000/svg" width="32.242" height="18.693" viewBox="0 0 32.242 18.693">
       <g id="Group_1069" data-name="Group 1069" transform="translate(-202.723 -137.717)">
         <path
@@ -163,9 +157,8 @@ const CountryPage = () => {
       </g>
     </svg>
   )}
-
-  <span style={{ marginLeft: '5px' }}>BACK</span> {/* Lägg till 5px mellanrum mellan pilen och texten */}
-</Button>
+          <span style={{ marginLeft: '5px' }}>BACK</span>
+        </Button>
 
         <CountryCard
           country={country}

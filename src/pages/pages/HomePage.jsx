@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import CountryCards from '../../components/CountryCards/CountryCards';
 import SecondHeader from '../../components/SecondHeader/SecondHeader';
 import CountryPage from './CountryPage';
-import "../../index.css";
+import '../../index.css';
 
 const AppContent = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [region, setRegion] = useState('');
   const [search, setSearch] = useState('');
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
 
   const location = useLocation();
   const showSecondHeader = location.pathname === '/';
@@ -27,7 +26,7 @@ const AppContent = () => {
         setIsLoading(false);
       } catch (error) {
         console.error(error);
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
@@ -60,12 +59,15 @@ const AppContent = () => {
         <SecondHeader
           setRegion={setRegion}
           setSearch={setSearch}
-          isLoading={isLoading} 
+          isLoading={isLoading}
         />
       )}
       <Routes>
         <Route path="/" element={<CountryCards countries={filteredCountries} isLoading={isLoading} />} />
-        <Route path="/country/:countryCode" element={<CountryPage />} />
+        <Route
+          path="/country/:countryCode"
+          element={<CountryPage setRegion={setRegion} setSearch={setSearch} />}
+        />
       </Routes>
     </Box>
   );
