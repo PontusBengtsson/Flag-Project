@@ -2,63 +2,55 @@ import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
 
 const Dropdown = ({ setRegion, region }) => {
-  const theme = useTheme(); // Hämta det aktuella temat
+  const theme = useTheme();
 
   const handleRegionChange = (event) => {
-    setRegion(event.target.value); // Uppdatera förälderns state
+    setRegion(event.target.value);
+  };
+
+  const commonStyles = {
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.background.default,
   };
 
   return (
     <Box sx={{ width: '100%', maxWidth: 180 }}>
-      <FormControl
-        fullWidth
-        sx={{
-          borderRadius: '4px',
-          backgroundColor: theme.palette.background.default, // Bakgrund från temat
-        }}
-      >
-        <InputLabel
-          id="region-select-label"
-          sx={{
-            color: theme.palette.text.primary, // Etikettens textfärg
-          }}
-        >
+      <FormControl fullWidth sx={{ borderRadius: '4px', ...commonStyles }}>
+        <InputLabel id="region-select-label" sx={{ color: theme.palette.text.primary }}>
           Region
         </InputLabel>
         <Select
           labelId="region-select-label"
           id="region-select"
-          value={region || ''} // Se till att värdet är giltigt
+          value={region || ''}
           onChange={handleRegionChange}
           label="Region"
           sx={{
-            color: theme.palette.text.primary, // Textfärg för val
-            backgroundColor: theme.palette.background.default, // Bakgrund från temat
+            ...commonStyles,
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.text.secondary, // Kantfärg
+              borderColor: theme.palette.text.secondary,
             },
             '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.text.primary, // Kantfärg vid hover
+              borderColor: theme.palette.text.primary,
             },
             '& .MuiSelect-icon': {
-              color: theme.palette.text.primary, // Ändra pilens färg
+              color: theme.palette.text.primary,
             },
           }}
           MenuProps={{
             PaperProps: {
               style: {
-                backgroundColor: theme.palette.background.paper, // Menyns bakgrundsfärg
-                color: theme.palette.text.primary, // Menyns textfärg
+                backgroundColor: theme.palette.background.paper,
+                color: theme.palette.text.primary,
               },
             },
           }}
         >
-          <MenuItem value="">All</MenuItem>
-          <MenuItem value="Asia">Asia</MenuItem>
-          <MenuItem value="Europe">Europe</MenuItem>
-          <MenuItem value="Africa">Africa</MenuItem>
-          <MenuItem value="Americas">America</MenuItem>
-          <MenuItem value="Oceania">Oceania</MenuItem>
+          {['All', 'Asia', 'Europe', 'Africa', 'Americas', 'Oceania'].map((regionOption) => (
+            <MenuItem key={regionOption} value={regionOption === 'All' ? '' : regionOption}>
+              {regionOption}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Box>
