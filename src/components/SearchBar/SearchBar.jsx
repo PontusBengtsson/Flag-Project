@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, TextField, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
@@ -6,28 +6,38 @@ const SearchBar = ({ setSearch, countries }) => {
   const theme = useTheme(); // Hämta det aktuella temat
   const [errorMessage, setErrorMessage] = useState('');
 
-  // Detta är när användaren börjar skriva i sökrutan
+  // Hantera ändringar i sökfältet
   const handleSearchChange = (event) => {
     const query = event.target.value;
     setSearch(query); // Uppdatera sökningen
 
-    // Om sökningen är tom, visa inget felmeddelande
     if (query === '') {
       setErrorMessage('');
-      return;
-    }
-
-    // Kontrollera om ett land finns som matchar
-    const countryFound = countries.some((country) =>
-      country.name.common.toLowerCase().includes(query.toLowerCase())
-    );
-
-    // Om inget land hittades, sätt felmeddelande
-    if (!countryFound) {
-      setErrorMessage('Could not find that country!');
     } else {
-      setErrorMessage(''); // Ta bort felmeddelandet om ett land hittades
+      const countryFound = countries.some((country) =>
+        country.name.common.toLowerCase().includes(query.toLowerCase())
+      );
+      setErrorMessage(countryFound ? '' : 'Could not find that country!');
     }
+  };
+
+  const inputStyles = {
+    flex: 1,
+    width: '100%',
+    '& .MuiOutlinedInput-root': {
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.background.default,
+      '& fieldset': {
+        borderColor: theme.palette.text.secondary,
+      },
+      '&:hover fieldset': {
+        borderColor: theme.palette.text.primary,
+      },
+    },
+  };
+
+  const labelStyles = {
+    color: theme.palette.text.primary,
   };
 
   return (
@@ -46,29 +56,11 @@ const SearchBar = ({ setSearch, countries }) => {
         id="outlined-basic"
         label="Search for a country"
         variant="outlined"
-        sx={{
-          flex: 1,
-          width: '100%',
-          '& .MuiOutlinedInput-root': {
-            color: theme.palette.text.primary, // Textfärg från temat
-            backgroundColor: theme.palette.background.default, // Bakgrund från temat
-            '& fieldset': {
-              borderColor: theme.palette.text.secondary, // Sekundärfärg för kant
-            },
-            '&:hover fieldset': {
-              borderColor: theme.palette.text.primary, // Primärfärg vid hover
-            },
-          },
-        }}
+        sx={inputStyles}
         onChange={handleSearchChange}
-        InputLabelProps={{
-          style: {
-            color: theme.palette.text.primary, // Etikettfärg från temat
-          },
-        }}
+        InputLabelProps={{ style: labelStyles }}
       />
-      
-      {/* Visa felmeddelandet om det finns */}
+
       {errorMessage && (
         <Typography
           sx={{
