@@ -2,8 +2,9 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
-const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
+const CountryCard = ({ country, handleBorderClick }) => {
     const theme = useTheme();
+
     const nativeName = country.name.nativeName ? Object.values(country.name.nativeName)[0].common : 'N/A';
     const topLevelDomain = country.tld ? country.tld.join(', ') : 'N/A';
 
@@ -19,35 +20,34 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
         >
             <Box sx={{ width: '1150px' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ padding: '64px 32px 0px 0px', width: '50%' }}>
+                    <Box sx={{ padding: '64px 32px 0 0', width: '50%', }}>
                         <img
                             src={country.flags.png}
                             alt={`${country.name.common} flag`}
-                            style={{ borderRadius: '8px', width: '100%' }}
+                            style={{ borderRadius: '8px', width: '100%',  }}
                         />
                     </Box>
-                    <Box sx={{ flex: 1, width: '50%', padding: '64px 0px 0px 32px' }}>
+                    <Box sx={{ flex: 1, width: '50%', padding: '64px 0 0 32px' }}>
                         <Typography variant="h3" sx={{ marginBottom: '16px' }}>
                             {country.name.common}
                         </Typography>
-                        <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '40px' }}>
-                            <Box sx={{ width: '50%' }}>
-                                <DetailItem label="Population" value={country.population.toLocaleString()} />
-                                <DetailItem label="Region" value={country.region} />
-                                <DetailItem label="Capital" value={country.capital ? country.capital[0] : 'N/A'} />
-                                <DetailItem label="Native Name" value={nativeName} />
-                            </Box>
-                            <Box sx={{ width: '50%' }}>
-                                <DetailItem label="Top Level Domain" value={topLevelDomain} />
-                                <DetailItem
-                                    label="Currencies"
-                                    value={Object.values(country.currencies)
-                                        .map((c) => c.name)
-                                        .join(', ')}
-                                />
-                                <DetailItem label="Languages" value={Object.values(country.languages).join(', ')} />
-                            </Box>
-                        </Box>
+                        <DetailsSection
+                            details={[
+                                { label: 'Population', value: country.population.toLocaleString() },
+                                { label: 'Region', value: country.region },
+                                { label: 'Capital', value: country.capital ? country.capital[0] : 'N/A' },
+                                { label: 'Native Name', value: nativeName },
+                                { label: 'Top Level Domain', value: topLevelDomain },
+                                { 
+                                    label: 'Currencies', 
+                                    value: Object.values(country.currencies).map((c) => c.name).join(', '),
+                                },
+                                { 
+                                    label: 'Languages', 
+                                    value: Object.values(country.languages).join(', '),
+                                },
+                            ]}
+                        />
                         <BorderCountries borders={country.borders} handleBorderClick={handleBorderClick} />
                     </Box>
                 </Box>
@@ -56,61 +56,69 @@ const CountryCard = ({ country, handleBorderClick, handleBackClick }) => {
     );
 };
 
+const DetailsSection = ({ details }) => (
+    <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '40px' }}>
+        <Box sx={{ width: '50%' }}>
+            {details.slice(0, 4).map(({ label, value }, index) => (
+                <DetailItem key={index} label={label} value={value} />
+            ))}
+        </Box>
+        <Box sx={{ width: '50%' }}>
+            {details.slice(4).map(({ label, value }, index) => (
+                <DetailItem key={index} label={label} value={value} />
+            ))}
+        </Box>
+    </Box>
+);
+
 const DetailItem = ({ label, value }) => (
     <Box sx={{ display: 'flex', gap: '5px', mb: 1 }}>
-        <Typography variant="body1">
-            <strong>{label}:</strong>
+        <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
+            {label}:
         </Typography>
         <Typography variant="body1">{value}</Typography>
     </Box>
 );
 
-const BorderCountries = ({ borders, handleBorderClick }) => {
-    return (
-        <Box sx={{ marginTop: '16px', display: 'flex' }}>
-            <Typography variant="body2" sx={{  display: 'flex', alignItems: 'center',  }}>
-                <strong>Border Countries:</strong>
-            </Typography>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'nowrap',
-                    overflowX: 'auto', // Möjliggör horisontell scroll
-                    gap: '8px',
-                    padding: '8px 0',
-                    margin: '10px'
-                    // Anpassad scrollbar för WebKit-baserade webbläsare (Chrome, Edge)
-                  
-                }}
-            >
-                {borders && borders.length > 0 ? (
-                    borders.map((borderCountryCode) => (
-                        <Button
-                            key={borderCountryCode}
-                            onClick={() => handleBorderClick(borderCountryCode)}
-                            sx={{
-                                
-                                borderRadius: '16px',
-                               
-                                backgroundColor: 'background.paper',
-                                whiteSpace: 'nowrap',
-                                boxShadow: 'none',
-                                border: '1px solid #ddd', // Tunn kantlinje
-                                '&:hover': {
-                                    backgroundColor: '#b5b5b5', 
-                                },
-                            }}
-                        >
-                            {borderCountryCode}
-                        </Button>
-                    ))
-                ) : (
-                    <Typography variant="body2">No border countries</Typography>
-                )}
-            </Box>
+const BorderCountries = ({ borders, handleBorderClick }) => (
+    <Box sx={{ marginTop: '16px', display: 'flex' }}>
+        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+            <strong>Border Countries:</strong>
+        </Typography>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'nowrap',
+                overflowX: 'auto',
+                gap: '8px',
+                padding: '8px 0',
+                margin: '10px',
+            }}
+        >
+            {borders && borders.length > 0 ? (
+                borders.map((borderCountryCode) => (
+                    <Button
+                        key={borderCountryCode}
+                        onClick={() => handleBorderClick(borderCountryCode)}
+                        sx={{
+                            borderRadius: '16px',
+                            backgroundColor: 'background.paper',
+                            whiteSpace: 'nowrap',
+                            boxShadow: 'none',
+                            border: '1px solid #ddd',
+                            '&:hover': {
+                                backgroundColor: '#b5b5b5',
+                            },
+                        }}
+                    >
+                        {borderCountryCode}
+                    </Button>
+                ))
+            ) : (
+                <Typography variant="body2">No border countries</Typography>
+            )}
         </Box>
-    );
-};
-
+    </Box>
+);
 
 export default CountryCard;
