@@ -17,20 +17,21 @@ const CountryPage = ({ setRegion, setSearch }) => {
 
 	useEffect(() => {
 		const fetchCountry = async () => {
-			setLoading(true);
+			setLoading(true); // Start loading
 			try {
 				const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
 				if (!response.ok) throw new Error('Failed to fetch country data');
 				const data = await response.json();
-				setCountry(data[0]);
+				setCountry(data[0]); // Sätt landet
 			} catch (error) {
 				console.error(error);
 			} finally {
-				setLoading(false);
+				setLoading(true); // Sluta ladda
 			}
 		};
 		fetchCountry();
 	}, [countryCode]);
+	
 
 	const handleBackClick = () => {
 		setRegion('');
@@ -42,48 +43,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
 		navigate(`/country/${borderCountryCode}`);
 	};
 
-	if (loading) {
-		return (
-			<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-				<Box sx={{ marginTop: '32px', width: '1150px' }}>
-					<SkeletonBox width="20%" sx={{ padding: '17px', marginBottom: '96px' }} />
-					<Box sx={{ display: 'flex', flexDirection: 'row' }}>
-						<SkeletonBox width={543} height={389} sx={{ marginRight: '64px' }} />
-						<Box sx={{ width: '543px', flexDirection: 'column' }}>
-							<SkeletonBox width="50%" height={56} sx={{ marginBottom: '16px' }} />
-							<Box sx={{ display: 'flex', flexDirection: 'row', width: '100%', marginBottom: '30px' }}>
-								{[...Array(4)].map((_, i) => (
-									<Box
-										key={i}
-										sx={{
-											display: 'flex',
-											flexDirection: 'column',
-											width: '100%',
-											gap: '10px',
-											marginLeft: i === 0 ? 0 : '20px'
-										}}
-									>
-										{[...Array(4 - i)].map((_, j) => (
-											<SkeletonBox key={j} />
-										))}
-									</Box>
-								))}
-							</Box>
-							<SkeletonBox width="100%" sx={{ padding: '20px', marginTop: '50px' }} />
-						</Box>
-					</Box>
-				</Box>
-			</Box>
-		);
-	}
-
-	if (!country) {
-		return (
-			<Box sx={{ padding: '16px', marginTop: '32px', textAlign: 'center' }}>
-				<Typography variant="h6">Failed to load country data. Please try again later.</Typography>
-			</Box>
-		);
-	}
+	
 
 	const renderBackButtonIcon = () => {
 		const isDarkMode = theme.palette.mode === 'dark';
@@ -135,10 +95,10 @@ const CountryPage = ({ setRegion, setSearch }) => {
 					<span style={{ marginLeft: '5px' }}>BACK</span>
 				</Button>
 				<CountryCard
-					country={country}
-					handleBackClick={handleBackClick}
-					handleBorderClick={handleBorderCountryClick}
-				/>
+    country={country}
+    handleBorderClick={handleBorderCountryClick}
+    loading={loading} // Pass loading här
+/>
 			</Box>
 		</Box>
 	);
