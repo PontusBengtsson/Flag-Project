@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import CountryCards from '../../components/CountryCards/CountryCards';
-import SecondHeader from '../../components/SecondHeader/SecondHeader';
+import CountryCards from '../components/CountryCards/CountryCards';
+import SecondHeader from '../components/SecondHeader/SecondHeader';
 import CountryPage from './CountryPage';
-import '../../index.css';
+import '../index.css';
 
 const AppContent = () => {
 	const [countries, setCountries] = useState([]);

@@ -33,14 +33,3 @@ body {
 	margin: 0;
 }
 
-@media (min-width: 300px) and (max-width: 768px) {
-	.techover-logo {
-		display: none !important;
-	}
-}
-
-@media (min-width: 700px) and (max-width: 1000px) {
-	.techover-logo {
-		display: none !important;
-	}
-}

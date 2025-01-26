@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, Skeleton } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import CountryCard from '../../components/CountryCard/CountryCard';
+import CountryCard from '../components/CountryCard/CountryCard';
 
 const SkeletonBox = ({ width, height, sx = {} }) => (
 	<Skeleton variant="rectangular" width={width} height={height} sx={{ borderRadius: '4px', ...sx }} />

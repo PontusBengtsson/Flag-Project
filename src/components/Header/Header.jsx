@@ -6,9 +6,9 @@ import '../../index.css';
 const Header = ({ toggleTheme, isDarkMode }) => {
 	const theme = useTheme();
 
-	const logoSrc = isDarkMode ? '/assets/techover-logo.png' : '/assets/techover-logo-dark.png';
+	const logoSrc = isDarkMode ? '/techover-logo.png' : '/techover-logo-dark.png';
 
-	const moonIconSrc = isDarkMode ? '/assets/moon.svg' : '/assets/moon-bordered.svg';
+	const moonIconSrc = isDarkMode ? '/moon.svg' : '/moon-bordered.svg';
 
 	return (
 		<Box
