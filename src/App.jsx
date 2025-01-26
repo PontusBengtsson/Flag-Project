@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from './pages/pages/HomePage'; // Adjust the path if necessary
+import HomePage from './pages/pages/HomePage'; 
 
 export default function App() {
   return <HomePage />;
