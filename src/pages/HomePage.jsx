@@ -24,10 +24,11 @@ const AppContent = () => {
 				const data = await response.json();
 				setCountries(data);
 				setFilteredCountries(data);
-				setIsLoading(false);
+				setIsLoading(true);
 			} catch (error) {
 				console.error(error);
-				setIsLoading(false);
+			} finally {
+				setIsLoading(true); // Sluta ladda
 			}
 		};
 
