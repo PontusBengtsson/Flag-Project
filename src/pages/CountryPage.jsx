@@ -26,7 +26,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
 			} catch (error) {
 				console.error(error);
 			} finally {
-				setLoading(false); // Sluta ladda
+				setLoading(true); // Sluta ladda
 			}
 		};
 		fetchCountry();

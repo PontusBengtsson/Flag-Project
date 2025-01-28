@@ -3,97 +3,23 @@ import { Box, Grid, Typography, Skeleton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 
-const SkeletonCard = () => (
-  <Box sx={{ backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 1, overflow: 'hidden' }}>
-    <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: '8px' }} />
-    <Box sx={{ display:'flex', padding: '16px' }}>
-      <Skeleton variant="text" width="10%" sx={{ backgroundColor: 'background.paper', marginBottom: '8px', borderRadius: '8px' }} />
-      <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
-      <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
-    </Box>
+// Reusable component to display country information
+const CountryInfo = ({ label, value, loading, skeletonWidth }) => (
+  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+    <Typography variant="body2" sx={{ color: 'text.primary', marginRight: '8px' }}>
+      <strong>{label}:</strong>
+    </Typography>
+    {loading ? (
+      <Skeleton width={skeletonWidth} />
+    ) : (
+      <Typography variant="body2" sx={{ color: 'text.primary' }}>
+        {value || 'N/A'}
+      </Typography>
+    )}
   </Box>
 );
 
-const CountryCard = ({ country, isLoading, theme }) => (
-  <Link to={`/country/${country.cca3}`} style={{ textDecoration: 'none' }}>
-    <Box
-      sx={{
-        width: '100%',
-        cursor: 'pointer',
-        borderRadius: '8px',
-        boxShadow:
-          theme.palette.mode === 'light'
-            ? '0px 8px 16px rgba(0, 0, 0, 0.08)'
-            : '0px 8px 16px rgba(255, 255, 255, 0.08)',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: theme.palette.background.paper,
-      }}
-    >
-      {/* Flag */}
-      {isLoading ? (
-        <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: '8px' }} />
-      ) : (
-        <img
-          src={country.flags.png}
-          alt={`${country.name.common} flag`}
-          style={{ width: '100%', height: '140px', objectFit: 'cover' }}
-        />
-      )}
-
-      <Box sx={{ padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        {/* Country Name */}
-        <Typography
-          variant="h6"
-          sx={{
-            fontWeight: '600',
-            color: theme.palette.text.primary,
-            marginBottom: '8px',
-          }}
-        >
-          {isLoading ? (
-            <Skeleton variant="text" width="60%" sx={{ borderRadius: '8px' }} />
-          ) : (
-            country.name.common
-          )}
-        </Typography>
-
-        {/* Population */}
-        <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
-          <strong>Population:</strong>{' '}
-          {isLoading ? (
-            <Skeleton variant="text" width="40%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
-          ) : (
-            country.population.toLocaleString()
-          )}
-        </Typography>
-
-        {/* Region */}
-        <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
-          <strong>Region:</strong>{' '}
-          {isLoading ? (
-            <Skeleton variant="text" width="50%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
-          ) : (
-            country.region
-          )}
-        </Typography>
-
-        {/* Capital */}
-        <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
-          <strong>Capital:</strong>{' '}
-          {isLoading ? (
-            <Skeleton variant="text" width="60%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
-          ) : (
-            country.capital ? country.capital[0] : 'N/A'
-          )}
-        </Typography>
-      </Box>
-    </Box>
-  </Link>
-);
-
-const CountryCards = ({ countries, isLoading }) => {
+const CountryCards = ({ countries, loading }) => {
   const theme = useTheme();
 
   return (
@@ -107,19 +33,63 @@ const CountryCards = ({ countries, isLoading }) => {
     >
       <Box sx={{ width: '1150px', margin: '0px' }}>
         <Grid container columnSpacing={4}>
-          {isLoading
-            ? Array.from({ length: 12 }, (_, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index} sx={{ marginBottom: 7 }}>
-                  <SkeletonCard />
-                </Grid>
-              ))
-            : countries
-                .sort((a, b) => a.name.common.localeCompare(b.name.common))
-                .map((country) => (
-                  <Grid item xs={12} sm={6} md={4} lg={3} key={country.cca3} sx={{ marginBottom: 7 }}>
-                    <CountryCard country={country} isLoading={isLoading} theme={theme} />
-                  </Grid>
-                ))}
+          {countries
+            .sort((a, b) => a.name.common.localeCompare(b.name.common))
+            .map((country) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={country.cca3} sx={{ marginBottom: 7 }}>
+                <Link to={`/country/${country.cca3}`} style={{ textDecoration: 'none' }}>
+                  <Box
+                    sx={{
+                      width: '100%',
+                      cursor: 'pointer',
+                      borderRadius: '8px',
+                      boxShadow:
+                        theme.palette.mode === 'light'
+                          ? '0px 8px 16px rgba(0, 0, 0, 0.08)'
+                          : '0px 8px 16px rgba(255, 255, 255, 0.08)',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      backgroundColor: theme.palette.background.paper,
+                    }}
+                  >
+                    {/* Flag */}
+                    {loading ? (
+                      <Skeleton variant="rectangular" width="100%" height={140} />
+                    ) : (
+                      <img
+                        src={country.flags.png}
+                        alt={`${country.name.common} flag`}
+                        style={{ width: '100%', height: '140px', objectFit: 'cover' }}
+                      />
+                    )}
+
+                    <Box sx={{ padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                      {/* Country Name */}
+                      <Typography
+                        variant="h7"
+                        sx={{
+                          fontWeight: '600',
+                          color: theme.palette.text.primary,
+                          
+                        }}
+                      >
+                        {loading ? <Skeleton width="100%" /> : country.name.common}
+                      </Typography>
+
+                      {/* Population */}
+                      <CountryInfo label="Population" value={country.population.toLocaleString()} loading={loading} skeletonWidth="60px" />
+
+                      {/* Region */}
+                      <CountryInfo label="Region" value={country.region} loading={loading} skeletonWidth="85px" />
+
+                      {/* Capital */}
+                      <CountryInfo label="Capital" value={country.capital ? country.capital[0] : 'N/A'} loading={loading} skeletonWidth="85px" />
+                    </Box>
+                  </Box>
+                </Link>
+              </Grid>
+            ))}
         </Grid>
       </Box>
     </Box>
