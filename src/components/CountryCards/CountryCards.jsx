@@ -6,9 +6,8 @@ import { useTheme } from '@mui/material/styles';
 const SkeletonCard = () => (
   <Box sx={{ backgroundColor: 'background.paper', borderRadius: 2, boxShadow: 1, overflow: 'hidden' }}>
     <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: '8px' }} />
-    <Box sx={{ padding: '16px' }}>
-      <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
-      <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
+    <Box sx={{ display:'flex', padding: '16px' }}>
+      <Skeleton variant="text" width="10%" sx={{ backgroundColor: 'background.paper', marginBottom: '8px', borderRadius: '8px' }} />
       <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
       <Skeleton variant="text" width="10%" sx={{ marginBottom: '8px', borderRadius: '8px' }} />
     </Box>
@@ -32,7 +31,7 @@ const CountryCard = ({ country, isLoading, theme }) => (
         backgroundColor: theme.palette.background.paper,
       }}
     >
-      {/* Flagga */}
+      {/* Flag */}
       {isLoading ? (
         <Skeleton variant="rectangular" width="100%" height={140} sx={{ borderRadius: '8px' }} />
       ) : (
@@ -42,9 +41,9 @@ const CountryCard = ({ country, isLoading, theme }) => (
           style={{ width: '100%', height: '140px', objectFit: 'cover' }}
         />
       )}
-	
+
       <Box sx={{ padding: '16px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        {/* Landets namn */}
+        {/* Country Name */}
         <Typography
           variant="h6"
           sx={{
@@ -64,7 +63,7 @@ const CountryCard = ({ country, isLoading, theme }) => (
         <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
           <strong>Population:</strong>{' '}
           {isLoading ? (
-            <Skeleton variant="text" width="40%" sx={{ borderRadius: '8px' }} />
+            <Skeleton variant="text" width="40%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
           ) : (
             country.population.toLocaleString()
           )}
@@ -74,7 +73,7 @@ const CountryCard = ({ country, isLoading, theme }) => (
         <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
           <strong>Region:</strong>{' '}
           {isLoading ? (
-            <Skeleton variant="text" width="50%" sx={{ borderRadius: '8px' }} />
+            <Skeleton variant="text" width="50%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
           ) : (
             country.region
           )}
@@ -84,7 +83,7 @@ const CountryCard = ({ country, isLoading, theme }) => (
         <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
           <strong>Capital:</strong>{' '}
           {isLoading ? (
-            <Skeleton variant="text" width="60%" sx={{ borderRadius: '8px' }} />
+            <Skeleton variant="text" width="60%" sx={{ display: 'inline-block', borderRadius: '8px' }} />
           ) : (
             country.capital ? country.capital[0] : 'N/A'
           )}
