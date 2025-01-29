@@ -6,33 +6,21 @@ import Header from '../src/components/Header/Header';
 import { lightTheme, darkTheme } from './theme/material-theme';
 
 const Root = () => {
-  
-  const savedTheme = localStorage.getItem('isDarkMode');
-  
-  
-  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-
-  const [isDarkMode, setIsDarkMode] = useState(savedTheme === null ? prefersDarkMode : JSON.parse(savedTheme));
-
-
-  const toggleTheme = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode); 
-    localStorage.setItem('isDarkMode', JSON.stringify(newMode)); 
-  };
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('isDarkMode');
+    return savedTheme ? JSON.parse(savedTheme) : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
   useEffect(() => {
-    
     document.body.classList.toggle('dark-mode', isDarkMode);
-    
+    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
     console.log('Current theme:', isDarkMode ? 'Dark' : 'Light');
-  }, [isDarkMode]); 
+  }, [isDarkMode]);
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline /> 
-      <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+      <Header toggleTheme={() => setIsDarkMode(prev => !prev)} isDarkMode={isDarkMode} />
       <App />
     </ThemeProvider>
   );
