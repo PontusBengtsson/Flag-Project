@@ -31,9 +31,9 @@ const SecondHeader = ({ setRegion, setSearch, region, countries }) => {
   return (
     <Box sx={commonBoxStyles}>
       <Box sx={contentBoxStyles}>
-	  <SearchBar setSearch={setSearch} countries={countries} />
-        
-      <Dropdown setRegion={setRegion} region={region} />
+        <SearchBar setSearch={setSearch} countries={countries} />
+        {/* Skicka region som prop till Dropdown */}
+        <Dropdown setRegion={setRegion} region={region} />
       </Box>
     </Box>
   );

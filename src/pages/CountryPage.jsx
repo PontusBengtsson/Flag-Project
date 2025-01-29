@@ -17,7 +17,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
 
 	useEffect(() => {
 		const fetchCountry = async () => {
-			setLoading(true); // Start loading
+			setLoading(false); // Start loading
 			try {
 				const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
 				if (!response.ok) throw new Error('Failed to fetch country data');
@@ -26,7 +26,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
 			} catch (error) {
 				console.error(error);
 			} finally {
-				setLoading(true); // Sluta ladda
+				setLoading(false); // Sluta ladda
 			}
 		};
 		fetchCountry();

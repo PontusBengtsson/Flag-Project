@@ -22,13 +22,13 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                
                 marginTop: '32px',
             }}
         >
             <Box sx={{ width: '1150px' }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-                    <Box sx={{ padding: '64px 32px 0 0', width: '50%' }}>
+                    <Box sx={{ margin: '64px 32px 0 0', width: '543px' }}>
                         {loading ? (
                             <Skeleton
                                 variant="rectangular"
@@ -44,51 +44,55 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
                             />
                         )}
                     </Box>
-                    <Box sx={{ flex: 1, width: '50%', padding: '64px 0 0 32px' }}>
-                        <Typography variant="h3" sx={{ marginBottom: '16px' }}>
-                            {loading ? (
-                                <Skeleton variant="text" width="50%" />
-                            ) : (
-                                country?.name?.common
-                            )}
-                        </Typography>
-                        <DetailsSection
-                            details={[
-                                {
-                                    label: 'Population',
-                                    value: country?.population
-                                        ? country.population.toLocaleString()
-                                        : 'N/A',
-                                },
-                                { label: 'Region', value: country?.region || 'N/A' },
-                                {
-                                    label: 'Capital',
-                                    value: country?.capital?.[0] || 'N/A',
-                                },
-                                { label: 'Native Name', value: nativeName },
-                                { label: 'Top Level Domain', value: topLevelDomain },
-                                {
-                                    label: 'Currencies',
-                                    value: country?.currencies
-                                        ? Object.values(country.currencies)
-                                              .map((c) => c.name)
-                                              .join(', ')
-                                        : 'N/A',
-                                },
-                                {
-                                    label: 'Languages',
-                                    value: country?.languages
-                                        ? Object.values(country.languages).join(', ')
-                                        : 'N/A',
-                                },
-                            ]}
-                            loading={loading}
-                        />
-                        <BorderCountries
-                            borders={country?.borders}
-                            handleBorderClick={handleBorderClick}
-                            loading={loading}
-                        />
+                    <Box sx={{ flex: 1, width: '543px', margin: '64px 0 0 32px' }}>
+                    <Typography variant="h3" sx={{ marginBottom: '16px', display: 'block' }}>
+    {loading ? (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <Skeleton variant="rectangular" width="50%" sx={{ borderRadius: '8px', height: '33px' }} />
+        </Box>
+    ) : (
+        country?.name?.common
+    )}
+</Typography>
+                        <Box>
+                            <DetailsSection
+                                details={[
+                                    {
+                                        label: 'Population',
+                                        value: country?.population
+                                            ? country.population.toLocaleString()
+                                            : 'N/A',
+                                    },
+                                    { label: 'Region', value: country?.region || 'N/A' },
+                                    {
+                                        label: 'Capital',
+                                        value: country?.capital?.[0] || 'N/A',
+                                    },
+                                    { label: 'Native Name', value: nativeName },
+                                    { label: 'Top Level Domain', value: topLevelDomain },
+                                    {
+                                        label: 'Currencies',
+                                        value: country?.currencies
+                                            ? Object.values(country.currencies)
+                                                  .map((c) => c.name)
+                                                  .join(', ')
+                                            : 'N/A',
+                                    },
+                                    {
+                                        label: 'Languages',
+                                        value: country?.languages
+                                            ? Object.values(country.languages).join(', ')
+                                            : 'N/A',
+                                    },
+                                ]}
+                                loading={loading}
+                            />
+                            <BorderCountries
+                                borders={country?.borders}
+                                handleBorderClick={handleBorderClick}
+                                loading={loading}
+                            />
+                        </Box>
                     </Box>
                 </Box>
             </Box>
@@ -97,7 +101,7 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
 };
 
 const DetailsSection = ({ details, loading }) => (
-    <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '40px' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', marginBottom: '30px' }}>
         <Box sx={{ width: '50%' }}>
             {details.slice(0, 4).map(({ label, value }, index) => (
                 <DetailItem key={index} label={label} value={value} loading={loading} />
@@ -112,7 +116,7 @@ const DetailsSection = ({ details, loading }) => (
 );
 
 const DetailItem = ({ label, value, loading }) => (
-    <Box sx={{ display: 'flex', gap: '5px', mb: 1 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px', mb: 1 }}>
         <Typography variant="body1" sx={{ fontWeight: 'bold' }}>
             {label}:
         </Typography>
@@ -125,8 +129,8 @@ const DetailItem = ({ label, value, loading }) => (
 );
 
 const BorderCountries = ({ borders, handleBorderClick, loading }) => (
-    <Box sx={{ marginTop: '16px', display: 'flex' }}>
-        <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ display: 'flex',  }}>
+        <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginRight: '10px' }}>
             <strong>Border Countries:</strong>
         </Typography>
         <Box
@@ -134,9 +138,9 @@ const BorderCountries = ({ borders, handleBorderClick, loading }) => (
                 display: 'flex',
                 flexWrap: 'nowrap',
                 overflowX: 'auto',
-                gap: '8px',
-                padding: '8px 0',
-                margin: '10px',
+                
+                gap:'10px',
+                
             }}
         >
             {loading ? (

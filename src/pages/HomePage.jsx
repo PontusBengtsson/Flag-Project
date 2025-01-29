@@ -9,9 +9,9 @@ import '../index.css';
 const AppContent = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState(''); // Region ska vara tomt initialt
   const [search, setSearch] = useState('');
-  const [isLoading, setIsLoading] = useState(true); // Manage loading state here
+  const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   const location = useLocation();
@@ -24,20 +24,20 @@ const AppContent = () => {
         const data = await response.json();
         setCountries(data);
         setFilteredCountries(data);
-        setIsLoading(false); // Data is fetched, set loading to false
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
         setErrorMessage('Failed to load countries.');
-        setIsLoading(false); // In case of an error, stop loading
+        setIsLoading(false);
       }
     };
 
     fetchCountries();
-  }, []); // Empty array means this effect runs once on mount
+  }, []);
 
   useEffect(() => {
     filterCountries();
-  }, [region, search]); // Filter countries when region or search changes
+  }, [region, search]); // Uppdatera när region eller search ändras
 
   const filterCountries = () => {
     let filtered = countries;
@@ -61,7 +61,7 @@ const AppContent = () => {
 
   return (
     <Box>
-      {showSecondHeader && <SecondHeader setRegion={setRegion} setSearch={setSearch} isLoading={isLoading} />}
+      {showSecondHeader && <SecondHeader setRegion={setRegion} setSearch={setSearch} region={region} countries={countries} />}
       <Routes>
         <Route
           path="/"

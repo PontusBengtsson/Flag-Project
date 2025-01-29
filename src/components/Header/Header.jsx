@@ -47,7 +47,8 @@ const Header = ({ toggleTheme, isDarkMode }) => {
 				>
 					<img id="Moon" src={moonIconSrc} alt="Moon Icon" />
 					<Box>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</Box>
-				</Button>
+				</Button >
+				
 			</Box>
 		</Box>
 	);
