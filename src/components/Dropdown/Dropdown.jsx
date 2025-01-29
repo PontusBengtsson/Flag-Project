@@ -4,8 +4,10 @@ import { Box, FormControl, InputLabel, MenuItem, Select, useTheme } from '@mui/m
 const Dropdown = ({ setRegion, region }) => {
   const theme = useTheme();
 
+  // Funktion för att hantera regionändringar
   const handleRegionChange = (event) => {
-    setRegion(event.target.value); // Uppdatera regionen när användaren gör ett val
+    const selectedRegion = event.target.value;
+    setRegion(selectedRegion);  // Direkt sätt värdet
   };
 
   const commonStyles = {
@@ -22,7 +24,7 @@ const Dropdown = ({ setRegion, region }) => {
         <Select
           labelId="region-select-label"
           id="region-select"
-          value={region || ''} // Om region är tomt, sätt det till ''
+          value={region || ''}  // Om region är tomt, visa inget i inputfältet
           onChange={handleRegionChange}
           label="Region"
           sx={{
@@ -46,8 +48,9 @@ const Dropdown = ({ setRegion, region }) => {
             },
           }}
         >
+          {/* Visa 'All' som den första menyn */}
           {['All', 'Asia', 'Europe', 'Africa', 'Americas', 'Oceania'].map((regionOption) => (
-            <MenuItem key={regionOption} value={regionOption === 'All' ? '' : regionOption}>
+            <MenuItem key={regionOption} value={regionOption}>
               {regionOption}
             </MenuItem>
           ))}

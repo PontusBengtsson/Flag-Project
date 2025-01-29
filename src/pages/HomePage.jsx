@@ -9,7 +9,7 @@ import '../index.css';
 const AppContent = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [region, setRegion] = useState(''); // Region ska vara tomt initialt
+  const [region, setRegion] = useState(''); // Tomt initialt, inget ifyllt
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
@@ -42,7 +42,7 @@ const AppContent = () => {
   const filterCountries = () => {
     let filtered = countries;
 
-    if (region) {
+    if (region && region !== 'All') {
       filtered = filtered.filter((country) => country.region === region);
     }
 
