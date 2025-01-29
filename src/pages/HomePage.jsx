@@ -25,7 +25,7 @@ const AppContent = () => {
       } catch {
         setErrorMessage('Failed to load countries.');
       } finally {
-        setIsLoading(false);
+        setIsLoading(true);
       }
     };
     fetchCountries();

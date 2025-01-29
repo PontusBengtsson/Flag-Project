@@ -25,7 +25,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     };
     fetchCountry();
@@ -41,7 +41,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
-      <Box sx={{ width: '1150px' }}>
+      <Box sx={{ width: '1150px', height: 'calc(100vh - 50px)', overflowY: 'auto' }} className="scrollbar-style">
         <Button
           variant="contained"
           onClick={handleBackClick}
