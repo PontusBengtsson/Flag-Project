@@ -21,15 +21,15 @@ const CountryCards = ({ countries, loading }) => {
       <Box sx={{ width: '1150px' }}>
         <Grid container columnSpacing={4}>
           {countries.sort((a, b) => a.name.common.localeCompare(b.name.common)).map((country) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={country.cca3} sx={{ marginBottom: 7 }}>
+            <Grid item xs={12} sm={6} md={4} lg={2} xl={3} x key={country.cca3} sx={{ marginBottom: 7 }}>
               <Link to={`/country/${country.cca3}`} style={{ textDecoration: 'none' }}>
                 <Box sx={{
-                  width: '100%', cursor: 'pointer', borderRadius: '4px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
+                  width: '263px', cursor: 'pointer', borderRadius: '4px', overflow: 'hidden', display: 'flex', flexDirection: 'column',
                   boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 5px -1px, rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px',
                   backgroundColor: theme.palette.background.paper
                 }}>
                   {loading ? <Skeleton variant="rectangular" width="100%" height={140} /> :
-                    <img src={country.flags.png} alt={`${country.name.common} flag`} style={{ width: '100%', height: '140px', objectFit: 'cover' }} />}
+                    <img src={country.flags.png} alt={`${country.name.common} flag`} style={{ width: '263px', height: '140px', objectFit: 'cover' }} />}
                   <Box sx={{ padding: '16px', display: 'flex', flexDirection: 'column' }}>
                     <Typography variant="h7" sx={{ marginBottom: '5px', fontWeight: '600', color: theme.palette.text.primary }}>
                       {loading ? <Skeleton width="100%" /> : country.name.common}

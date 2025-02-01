@@ -11,6 +11,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
       sx={{
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         backgroundColor: theme.palette.background.paper,
@@ -23,7 +24,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           fontSize: 20,
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: 1150,
+          width: { xs: '500px', sm:'700px', md: '900px', lg:'1150px', },
           py: 1.5,
         }}
       >
