@@ -15,6 +15,7 @@ const AppContent = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const location = useLocation();
 
+  // Hämta länder
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -31,6 +32,7 @@ const AppContent = () => {
     fetchCountries();
   }, []);
 
+  // Filtrera länder
   useEffect(() => {
     const filterCountries = () => {
       let filtered = countries.filter((country) =>
@@ -43,8 +45,14 @@ const AppContent = () => {
     filterCountries();
   }, [region, search, countries]);
 
+  // Scrolla till toppen varje gång användaren navigerar eller uppdaterar sidan (F5)
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll till toppen
+  }, [location]);
+
   return (
     <Box>
+      {/* Visa SecondHeader endast på / */}
       {location.pathname === '/' && <SecondHeader setRegion={setRegion} setSearch={setSearch} region={region} countries={countries} />}
       {errorMessage && <Box sx={{ textAlign: 'center', color: 'red', mb: 2 }}><strong>{errorMessage}</strong></Box>}
       <Routes>

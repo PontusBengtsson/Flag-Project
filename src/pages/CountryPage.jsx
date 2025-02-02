@@ -16,6 +16,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
   const theme = useTheme();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const fetchCountry = async () => {
       try {
         const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`);
@@ -43,7 +44,7 @@ const CountryPage = ({ setRegion, setSearch }) => {
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
       <Box sx={{ 
         width: { xs: '90%', sm:'90%', md: '90%', lg:'1152px'}, 
-        height: 'calc(100vh - 50px)', overflowY: 'auto' }} className="scrollbar-style">
+         overflowY: 'auto' }} className="scrollbar-style">
         <Button
           variant="contained"
           onClick={handleBackClick}

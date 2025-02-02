@@ -9,6 +9,19 @@ body {
 	
 }
 
+/* Se till att body och html är full höjd */
+
+  /* Headern ska inte vara fast längre, den följer nu sidans flöde */
+  header {
+	width: 100%;
+	padding: 16px 0;
+	background-color: #fff;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	z-index: 1000; /* Se till att headern ligger över andra element */
+  }
+  
+
+
 .scrollbar-style {
 	overflow-y: scroll;
 }

@@ -13,18 +13,22 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
 		
 			<Box
 	sx={{
-		width: { xs: '90%', sm: '90%', md: '100%', lg: '1152px' },
+		width: {  md: '100%', lg: '1152px' },
 		display: 'flex',
 		flexDirection: { xs: 'column', md: 'row' }, // Kolumn på små skärmar, rad på större
-		alignItems: { xs: 'center', md: 'flex-start' },
+		marginTop:  '64px',
+        gap: '64px',
+        paddingBottom:'160px' // Lägg till detta
+
+        
 	}}
 >
 	<Box
 		sx={{
-			flex: 1,
-			flexBasis: '50%', // Tvingar varje box att ta 50% av utrymmet
-			margin: { xs: '0 0 32px 0', md: '64px 32px 0 0' }, // Anpassa marginaler för responsivitet
-			
+			width: {sm: '100%', md:'calc(50% - 32px)'}, // Tvingar varje box att ta 50% av utrymmet
+			 // Anpassa marginaler för responsivitet
+			justifyContent: 'flex-start',
+           
 		}}
 	>
 		{loading ? (
@@ -33,16 +37,14 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
 			<img
 				src={country?.flags?.png}
 				alt={`${country?.name?.common} flag`}
-				style={{ borderRadius: '8px', width: '100%' }}
+				style={{ borderRadius: '8px', width: '100%', }}
 			/>
 		)}
 	</Box>
 	<Box
 		sx={{
-			flex: 1,
-			flexBasis: '50%', // Ser till att denna del alltid tar upp 50%
-			margin: { xs: '0', md: '64px 0 0 32px' },
-			width: '20%'
+			width:{sm:'100%',md:'calc(50% - 32px)'}, // Ser till att denna del alltid tar upp 50%
+			
 		}}
 	>
 		<Typography variant="h3" sx={{ marginBottom: '16px' }}>
@@ -87,7 +89,7 @@ const CountryCard = ({ country, handleBorderClick, loading }) => {
 };
 
 const DetailsSection = ({ details, loading }) => (
-	<Box sx={{ display: 'flex', marginBottom: '30px' }}>
+	<Box sx={{ display: 'flex',  flexDirection:{xs:'column',md:'row'}, marginBottom: '30px' }}>
 		{[details.slice(0, 4), details.slice(4)].map((group, i) => (
 			<Box key={i} sx={{ width: '100%' }}>
 				{group.map((d, index) => (
@@ -113,7 +115,7 @@ const DetailItem = ({ label, value, loading }) => (
 
 const BorderCountries = ({ borders, handleBorderClick, loading }) => (
 	<Box sx={{ display: 'flex' }}>
-		<Typography variant="body1" sx={{ marginRight: '10px' }}>
+		<Typography variant="body1" sx={{ display: 'flex', alignItems:'center',marginRight: '10px', width: '40%',height: '32px' }}>
 			<strong>Border Countries:</strong>
 		</Typography>
 		<Box sx={{ display: 'flex', flexWrap: 'nowrap', overflowX: 'auto', gap: '10px' }}>
@@ -129,10 +131,11 @@ const BorderCountries = ({ borders, handleBorderClick, loading }) => (
 						onClick={() => handleBorderClick(code)}
 						sx={{
 							borderRadius: '16px',
+                            height: '32px',
 							backgroundColor: 'background.paper',
 							whiteSpace: 'nowrap',
 							boxShadow: 'none',
-							border: '1px solid #ddd',
+							
 							'&:hover': { backgroundColor: '#b5b5b5' }
 						}}
 					>
