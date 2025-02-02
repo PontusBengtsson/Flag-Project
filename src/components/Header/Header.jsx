@@ -24,7 +24,7 @@ const Header = ({ toggleTheme, isDarkMode }) => {
           fontSize: 20,
           alignItems: 'center',
           justifyContent: 'space-between',
-          width: { xs: '500px', sm:'700px', md: '900px', lg:'1150px', },
+          width: { xs: '90%', sm:'90%', md: '90%', lg:'1152px'},
           py: 1.5,
         }}
       >

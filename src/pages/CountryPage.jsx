@@ -41,7 +41,9 @@ const CountryPage = ({ setRegion, setSearch }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
-      <Box sx={{ width: '1150px', height: 'calc(100vh - 50px)', overflowY: 'auto' }} className="scrollbar-style">
+      <Box sx={{ 
+        width: { xs: '90%', sm:'90%', md: '90%', lg:'1152px'}, 
+        height: 'calc(100vh - 50px)', overflowY: 'auto' }} className="scrollbar-style">
         <Button
           variant="contained"
           onClick={handleBackClick}

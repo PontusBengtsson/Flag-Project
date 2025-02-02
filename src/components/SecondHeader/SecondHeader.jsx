@@ -22,12 +22,12 @@ const SecondHeader = ({ setRegion, setSearch, region, countries }) => {
       <Box
         sx={{
           display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          justifyContent: { xs: 'flex-start', sm: 'space-between' },
-          alignItems: 'center',
-          width: '100%',
-          maxWidth: '1150px',
-          px: { xs: 2, sm: 0 },
+          flexDirection: {  xs: 'column',sm: 'column', md: 'row' },
+          justifyContent: { sm: 'flex-start', md: 'space-between' },
+          gap: { xs: '20px', sm: 'none' },
+          width: { xs: '90%', sm:'90%', md: '90%', lg:'1152px', },
+          
+          
         }}
       >
         <SearchBar setSearch={setSearch} countries={countries} />
