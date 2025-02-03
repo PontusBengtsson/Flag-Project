@@ -52,7 +52,6 @@ const CountryPage = ({ setRegion, setSearch }) => {
             color: theme.palette.text.primary,
             backgroundColor: theme.palette.background.default,
             boxShadow: 'none',
-            p: 1,
             textTransform: 'none',
             '&:hover': { backgroundColor: '#b5b5b5' },
             display: 'flex',

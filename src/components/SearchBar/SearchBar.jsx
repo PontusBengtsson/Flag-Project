@@ -11,25 +11,29 @@ const SearchBar = ({ setSearch, countries }) => {
   const handleSearchChange = (event) => {
     const query = event.target.value;
     setSearch(query);
+
+    // Kontrollera om något land matchar sökningen
     const countryFound = countries.some((country) =>
       country.name.common.toLowerCase().includes(query.toLowerCase())
     );
-    setErrorMessage(query && !countryFound ? 'Could not find that country!' : '');
+
+    // Om inget land hittas och användaren söker, visa ett felmeddelande
+    if (query && !countryFound) {
+      setErrorMessage('Could not find that country!');
+    } else {
+      setErrorMessage('');
+    }
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && event.target.value && errorMessage) {
+    // Om användaren trycker på "Enter" och det finns inget felmeddelande, navigera
+    if (event.key === 'Enter' && !errorMessage) {
       navigate('/');
     }
   };
 
   return (
-    <Box
-      component="form"
-      sx={{ borderRadius: 2, maxWidth: 370, width: '100%' }}
-      noValidate
-      autoComplete="off"
-    >
+    <Box component="form" sx={{ borderRadius: 2, maxWidth: 370, width: '100%' }} noValidate autoComplete="off">
       <TextField
         label="Search for a country"
         variant="outlined"
@@ -46,11 +50,7 @@ const SearchBar = ({ setSearch, countries }) => {
         }}
         InputLabelProps={{ style: { color: theme.palette.text.primary } }}
       />
-      {errorMessage && (
-        <Typography sx={{ color: theme.palette.error.main, mt: 1, textAlign: 'center' }}>
-          {errorMessage}
-        </Typography>
-      )}
+    
     </Box>
   );
 };
